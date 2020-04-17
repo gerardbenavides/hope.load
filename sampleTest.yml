@@ -1,0 +1,18 @@
+
+##SCENARIOS SECTION##
+scenarios:
+  - flow:
+    - loop: 
+      - get:
+          url: "/api/Challenge/87ca7cfe-e0fe-43ae-a06b-a1d3ce2fc240/contribution?PageNumber=1&PageSize=16"
+          # url: "/api/Leaderboard/global?PageNumber=1&PageSize=20"
+          # url: "/api/Leaderboard/global?PageNumber=1&PageSize=20"
+      count: 2
+          
+          # # capture:
+          # #   - json: "$.count"
+          # #     as: count
+          # expect:
+          #   - statusCode: 200
+          #   - contentType: json
+          #   - hasProperty: data

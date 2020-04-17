@@ -1,0 +1,13 @@
+
+scenarios:
+  - flow:
+      - get: #GET STARTED AND FINISHED CHALLENGES
+          url: "/api/Challenge?Status=started&Status=finished&PageNumber={{max_items}}&PageSize={{max_items}}"
+          capture:
+            - json: "$.status"
+              as: status
+          expect:
+            - statusCode: 200
+            - contentType: json
+            - hasProperty: data ##[0].status
+

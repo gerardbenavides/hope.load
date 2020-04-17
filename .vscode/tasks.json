@@ -1,0 +1,624 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+
+    "tasks": [
+        {
+            "label": "getChallengesN", // GET CHALLENGES
+            "type": "shell",
+            "command": "artillery run tests/load/prod/getChallenges.yml --config tests/load/prod/config/loadNormal.yml --output tests/load/output/r_getChallengesN.json",
+        },
+        {
+            "label": "r_getChallengesN", // GENERATE GET CHALLENGES REPORT
+            "type": "shell",
+            "command": "artillery report tests/load/output/r_getChallengesN.json",
+        },
+        {
+            "label": "getChlContrN", // GET CHALLENGE CONTRIBUTIONS
+            "type": "shell",
+            "command": "artillery run tests/load/prod/getChlContr.yml --config tests/load/prod/config/loadNormal.yml --output tests/load/output/r_getChlContrN.json",
+
+        },
+        {
+            "label": "r_getChlContrN", // GENERATE GET CHALLENGE CONTRIBUTION REPORT
+            "type": "shell",
+            "command": "artillery report tests/load/output/r_getChlContrN.json",
+        },
+        {
+            "label": "getGlobalLdrN", // GET GLOBAL LEADERBOARDS
+            "type": "shell",
+            "command": "artillery run tests/load/prod/getGlobalLdr.yml --config tests/load/prod/config/loadNormal.yml --output tests/load/output/r_getGlobalLdrN.json",
+        },
+        {
+            "label": "r_getGlobalLdrN", // GENERATE GET GLOBAL LEADERBOARDS REPORT
+            "type": "shell",
+            "command": "artillery report tests/load/output/r_getGlobalLdrN.json",
+        },
+        {
+            "label": "getChallengeLdrN", // GET GLOBAL LEADERBOARDS
+            "type": "shell",
+            "command": "artillery run tests/load/prod/getChallengeLdr.yml --config tests/load/prod/config/loadNormal.yml --output tests/load/output/r_getChallengeLdrN.json",
+        },
+        {
+            "label": "r_getChallengeLdrN", // GENERATE GET GLOBAL LEADERBOARDS REPORT
+            "type": "shell",
+            "command": "artillery report tests/load/output/r_getChallengeLdrN.json",
+        },
+        {
+            "label": "getProfConnectedFriendsN", // GET GLOBAL LEADERBOARDS
+            "type": "shell",
+            "command": "artillery run tests/load/prod/getProfConnectedFriends.yml --config tests/load/prod/config/loadNormal.yml --output tests/load/output/r_getProfConnectedFriendsN.json",
+        },
+        {
+            "label": "r_getProfConnectedFriendsN", // GENERATE GET GLOBAL LEADERBOARDS REPORT
+            "type": "shell",
+            "command": "artillery report tests/load/output/r_getProfConnectedFriendsN.json",
+        },
+  
+        {
+            "label": "Normal: Get Challenges", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed Get Challenges",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getChallengesN", "r_getChallengesN"],
+            "group": "test"
+        },
+        {
+            "label": "Normal: Get Challenge Contributions", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed Get Challenge Contributions",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getChlContrN", "r_getChlContrN"],
+            "group": "test"
+        },
+        {
+            "label": "Normal: Get Global Leaderboards", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed Get Global Leaderboards",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getGlobalLdrN", "r_getGlobalLdrN"],
+            "group": "test"
+        },
+        {
+            "label": "Normal: Get Challenge Rankings", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed Get Challenge Rankings",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getChallengeLdrN", "r_getChallengeLdrN"],
+            "group": "test"
+        },
+        {
+            "label": "Normal: Get Profile - Connected Friends", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed Get Challenge Rankings",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getProfConnectedFriendsN", "r_getProfConnectedFriendsN"],
+            "group": "test"
+        },
+        {
+            "label": "Normal: Consecutive Test Runs", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed multiple test runs",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getChallengesN", "r_getChallengesN","getChlContrN", "r_getChlContrN", "getChlContributorsN", "r_getChlContributorsN", "getGlobalLdrN", "r_getGlobalLdrN"],
+            "group": "test"
+        },
+
+
+
+
+        ///////////////////////////////////////////////////// M E D I U M /////////////////////////////////////////////////////////////////////
+
+        {
+            "label": "getChallengesM", // GET CHALLENGES
+            "type": "shell",
+            "command": "artillery run tests/load/prod/getChallenges.yml --config tests/load/prod/config/loadMedium.yml --output tests/load/output/r_getChallengesM.json",
+            "presentation": {
+                "reveal": "silent",
+                "clear": true
+              }
+        },
+        {
+            "label": "r_getChallengesM", // GENERATE GET CHALLENGES REPORT
+            "type": "shell",
+            "command": "artillery report tests/load/output/r_getChallengesM.json",
+        },
+        {
+            "label": "getChlContrM", // GET CHALLENGE CONTRIBUTIONS
+            "type": "shell",
+            "command": "artillery run tests/load/prod/getChlContr.yml --config tests/load/prod/config/loadMedium.yml --output tests/load/output/r_getChlContrM.json",
+
+        },
+        {
+            "label": "r_getChlContrM", // GENERATE GET CHALLENGE CONTRIBUTION REPORT
+            "type": "shell",
+            "command": "artillery report tests/load/output/r_getChlContrM.json",
+        },
+        {
+            "label": "getGlobalLdrM", // GET GLOBAL LEADERBOARDS
+            "type": "shell",
+            "command": "artillery run tests/load/prod/getGlobalLdr.yml --config tests/load/prod/config/loadMedium.yml --output tests/load/output/r_getGlobalLdrM.json",
+        },
+        {
+            "label": "r_getGlobalLdrM", // GENERATE GET GLOBAL LEADERBOARDS REPORT
+            "type": "shell",
+            "command": "artillery report tests/load/output/r_getGlobalLdrM.json",
+        },
+        {
+            "label": "getChallengeLdrM", // GET GLOBAL LEADERBOARDS
+            "type": "shell",
+            "command": "artillery run tests/load/prod/getChallengeLdr.yml --config tests/load/prod/config/loadMedium.yml --output tests/load/output/r_getChallengeLdrM.json",
+        },
+        {
+            "label": "r_getChallengeLdrM", // GENERATE GET GLOBAL LEADERBOARDS REPORT
+            "type": "shell",
+            "command": "artillery report tests/load/output/r_getChallengeLdrM.json",
+        },
+        {
+            "label": "getProfConnectedFriendsM", // GET GLOBAL LEADERBOARDS
+            "type": "shell",
+            "command": "artillery run tests/load/prod/getProfConnectedFriends.yml --config tests/load/prod/config/loadMedium.yml --output tests/load/output/r_getProfConnectedFriendsM.json",
+        },
+        {
+            "label": "r_getProfConnectedFriendsM", // GENERATE GET GLOBAL LEADERBOARDS REPORT
+            "type": "shell",
+            "command": "artillery report tests/load/output/r_getProfConnectedFriendsM.json",
+        },
+
+        {
+            "label": "Medium: Get Challenges", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed Get Challenges",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getChallengesM", "r_getChallengesM"],
+            "group": "test"
+        },
+        {
+            "label": "Medium: Get Challenge Contributions", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed Get Challenge Contributions",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getChlContrM", "r_getChlContrM"],
+            "group": "test"
+        },
+        {
+            "label": "Medium: Get Global Leaderboards", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed Get Global Leaderboards",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getGlobalLdrM", "r_getGlobalLdrM"],
+            "group": "test"
+        },
+        {
+            "label": "Medium: Get Challenge Rankings", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed Get Challenge Rankings",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getChallengeLdrM", "r_getChallengeLdrM"],
+            "group": "test"
+        },
+        {
+            "label": "Medium: Get Profile - Connected Friends", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed Get Challenge Rankings",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getProfConnectedFriendsM", "r_getProfConnectedFriendsM"],
+            "group": "test"
+        },
+        {
+            "label": "Medium: Consecutive Test Runs", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed multiple test runs",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getChallengesM", "r_getChallengesM","getChlContrM", "r_getChlContrM", "getChlContributorsM", "r_getChlContributorsM", "getGlobalLdrM", "r_getGlobalLdrM"],
+            "group": "test"
+        },
+        ///////////////////////////////////////////////////// H I G H /////////////////////////////////////////////////////////////////////
+
+        {
+            "label": "getChallengesH", // GET CHALLENGES
+            "type": "shell",
+            "command": "artillery run tests/load/prod/getChallenges.yml --config tests/load/prod/config/loadHigh.yml --output tests/load/output/r_getChallengesH.json",
+        },
+        {
+            "label": "r_getChallengesH", // GENERATE GET CHALLENGES REPORT
+            "type": "shell",
+            "command": "artillery report tests/load/output/r_getChallengesH.json",
+        },
+        {
+            "label": "getChlContrH", // GET CHALLENGE CONTRIBUTIONS
+            "type": "shell",
+            "command": "artillery run tests/load/prod/getChlContr.yml --config tests/load/prod/config/loadHigh.yml --output tests/load/output/r_getChlContrH.json",
+
+        },
+        {
+            "label": "r_getChlContrH", // GENERATE GET CHALLENGE CONTRIBUTION REPORT
+            "type": "shell",
+            "command": "artillery report tests/load/output/r_getChlContrH.json",
+        },
+        {
+            "label": "getGlobalLdrH", // GET GLOBAL LEADERBOARDS
+            "type": "shell",
+            "command": "artillery run tests/load/prod/getGlobalLdr.yml --config tests/load/prod/config/loadHigh.yml --output tests/load/output/r_getGlobalLdrH.json",
+        },
+        {
+            "label": "r_getGlobalLdrH", // GENERATE GET GLOBAL LEADERBOARDS REPORT
+            "type": "shell",
+            "command": "artillery report tests/load/output/r_getGlobalLdrH.json",
+        },
+        {
+            "label": "getChallengeLdrH", // GET GLOBAL LEADERBOARDS
+            "type": "shell",
+            "command": "artillery run tests/load/prod/getChallengeLdr.yml --config tests/load/prod/config/loadHigh.yml --output tests/load/output/r_getChallengeLdrH.json",
+        },
+        {
+            "label": "r_getChallengeLdrH", // GENERATE GET GLOBAL LEADERBOARDS REPORT
+            "type": "shell",
+            "command": "artillery report tests/load/output/r_getChallengeLdrH.json",
+        },
+        {
+            "label": "getProfConnectedFriendsH", // GET GLOBAL LEADERBOARDS
+            "type": "shell",
+            "command": "artillery run tests/load/prod/getProfConnectedFriends.yml --config tests/load/prod/config/loadHigh.yml --output tests/load/output/r_getProfConnectedFriendsH.json",
+        },
+        {
+            "label": "r_getProfConnectedFriendsH", // GENERATE GET GLOBAL LEADERBOARDS REPORT
+            "type": "shell",
+            "command": "artillery report tests/load/output/r_getProfConnectedFriendsH.json",
+        },
+        {
+            "label": "High: Get Challenges", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed Get Challenges",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getChallengesH", "r_getChallengesH"],
+            "group": "test"
+        },
+        {
+            "label": "High: Get Challenge Contributions", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed Get Challenge Contributions",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getChlContrH", "r_getChlContrH"],
+            "group": "test"
+        },
+        {
+            "label": "High: Get Global Rankings", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed Get Challenge Rankings",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getGlobalLdrH", "r_getGlobalLdrH"],
+            "group": "test"
+        },
+        {
+            "label": "High: Get Challenge Rankings", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed Get Challenge Rankings",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getChallengeLdrH", "r_getChallengeLdrH"],
+            "group": "test"
+        },
+        {
+            "label": "High: Get Profile - Connected Friends", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed Get Challenge Rankings",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getProfConnectedFriendsH", "r_getProfConnectedFriendsH"],
+            "group": "test"
+        },
+        {
+            "label": "High: Consecutive Test Runs", //EXECUTE
+            "type": "shell",
+            "command": "echo Executed multiple test runs",
+            "dependsOrder": "sequence",
+            "dependsOn": ["getChallengesH", "r_getChallengesH","getChlContrH", "r_getChlContrH", "getChlContributorsH", "r_getChlContributorsH", "getGlobalLdrH", "r_getGlobalLdrH"],
+            "group": "test"
+        },
+
+
+        // ///////////////////////////////////////////// STAGING STAGING STAGING ////////////////////////////////////////////////////////////////////////////////////////
+
+        // {
+        //     "label": "getChallengesN", // GET CHALLENGES
+        //     "type": "shell",
+        //     "command": "artillery run tests/load/staging/getChallenges.yml --config tests/load/staging/config/loadNormal.yml --output tests/load/staging/output/r_getChallengesN.json",
+        // },
+        // {
+        //     "label": "r_getChallengesN", // GENERATE GET CHALLENGES REPORT
+        //     "type": "shell",
+        //     "command": "artillery report tests/load/staging/output/r_getChallengesN.json",
+        // },
+        // {
+        //     "label": "getChlContrN", // GET CHALLENGE CONTRIBUTIONS
+        //     "type": "shell",
+        //     "command": "artillery run tests/load/staging/getChlContr.yml --config tests/load/staging/config/loadNormal.yml --output tests/load/staging/output/r_getChlContrN.json",
+
+        // },
+        // {
+        //     "label": "r_getChlContrN", // GENERATE GET CHALLENGE CONTRIBUTION REPORT
+        //     "type": "shell",
+        //     "command": "artillery report tests/load/staging/output/r_getChlContrN.json",
+        // },
+        // {
+        //     "label": "getGlobalLdrN", // GET GLOBAL LEADERBOARDS
+        //     "type": "shell",
+        //     "command": "artillery run tests/load/staging/getGlobalLdr.yml --config tests/load/staging/config/loadNormal.yml --output tests/load/staging/output/r_getGlobalLdrN.json",
+        // },
+        // {
+        //     "label": "r_getGlobalLdrN", // GENERATE GET GLOBAL LEADERBOARDS REPORT
+        //     "type": "shell",
+        //     "command": "artillery report tests/load/staging/output/r_getGlobalLdrN.json",
+        // },
+        // {
+        //     "label": "getChlContributorsN", // 
+        //     "type": "shell",
+        //     "command": "artillery run tests/load/staging/getChlContributors.yml --config tests/load/staging/config/loadNormal.yml --output tests/load/staging/output/r_getChlContributorsN.json",
+        // },
+        // {
+        //     "label": "r_getChlContributorsN", // 
+        //     "type": "shell",
+        //     "command": "artillery report tests/load/staging/output/r_getChlContributorsN.json",
+        // },
+        // // {
+        // //     "label": "postComment", // 
+        // //     "type": "shell",
+        // //     "command": "artillery run tests/load/prod/postComment.yml --config tests/load/prod/config/loadNormal.yml --output tests/load/output/r_postComment.json",
+        // // },
+        // // {
+        // //     "label": "r_postComment", // 
+        // //     "type": "shell",
+        // //     "command": "artillery report tests/load/output/r_postComment.json",
+        // // },
+
+        // {
+        //     "label": "Normal STAGING: Get Challenges", //EXECUTE
+        //     "type": "shell",
+        //     "command": "echo Executed Get Challenges",
+        //     "dependsOrder": "sequence",
+        //     "dependsOn": ["getChallengesN", "r_getChallengesN"],
+        //     "group": "test"
+        // },
+        // {
+        //     "label": "Normal STAGING: Get Challenge Contributions", //EXECUTE
+        //     "type": "shell",
+        //     "command": "echo Executed Get Challenge Contributions",
+        //     "dependsOrder": "sequence",
+        //     "dependsOn": ["getChlContrN", "r_getChlContrN"],
+        //     "group": "test"
+        // },
+        // {
+        //     "label": "Normal STAGING: Get Global Leaderboards", //EXECUTE
+        //     "type": "shell",
+        //     "command": "echo Executed Get Global Leaderboards",
+        //     "dependsOrder": "sequence",
+        //     "dependsOn": ["getGlobalLdrN", "r_getGlobalLdrN"],
+        //     "group": "test"
+        // },
+        // {
+        //     "label": "Normal STAGING: Get Challenge Contributors", //EXECUTE
+        //     "type": "shell",
+        //     "command": "echo Executed Get Challenge Contributors",
+        //     "dependsOrder": "sequence",
+        //     "dependsOn": ["getChlContributorsN", "r_getChlContributorsN"],
+        //     "group": "test"
+        // },
+        // // {
+        // //     "label": "POST COMMENT", //EXECUTE
+        // //     "type": "shell",
+        // //     "command": "echo POST COMMENT",
+        // //     "dependsOrder": "sequence",
+        // //     "dependsOn": ["postComment", "r_postComment"],
+        // //     "group": "test"
+        // // },
+        // {
+        //     "label": "Normal STAGING: Consecutive Test Runs", //EXECUTE
+        //     "type": "shell",
+        //     "command": "echo Executed multiple test runs",
+        //     "dependsOrder": "sequence",
+        //     "dependsOn": ["getChallengesN", "r_getChallengesN","getChlContrN", "r_getChlContrN", "getChlContributorsN", "r_getChlContributorsN", "getGlobalLdrN", "r_getGlobalLdrN"],
+        //     "group": "test"
+        // },
+
+
+
+
+        // ///////////////////////////////////////////////////// M E D I U M /////////////////////////////////////////////////////////////////////
+
+        // {
+        //     "label": "getChallengesM", // GET CHALLENGES
+        //     "type": "shell",
+        //     "command": "artillery run tests/load/staging/getChallenges.yml --config tests/load/staging/config/loadMedium.yml --output tests/load/staging/output/r_getChallengesM.json",
+        // },
+        // {
+        //     "label": "r_getChallengesM", // GENERATE GET CHALLENGES REPORT
+        //     "type": "shell",
+        //     "command": "artillery report tests/load/staging/output/r_getChallengesM.json",
+        // },
+        // {
+        //     "label": "getChlContrM", // GET CHALLENGE CONTRIBUTIONS
+        //     "type": "shell",
+        //     "command": "artillery run tests/load/staging/getChlContr.yml --config tests/load/staging/config/loadMedium.yml --output tests/load/staging/output/r_getChlContrM.json",
+
+        // },
+        // {
+        //     "label": "r_getChlContrM", // GENERATE GET CHALLENGE CONTRIBUTION REPORT
+        //     "type": "shell",
+        //     "command": "artillery report tests/load/staging/output/r_getChlContrM.json",
+        // },
+        // {
+        //     "label": "getGlobalLdrM", // GET GLOBAL LEADERBOARDS
+        //     "type": "shell",
+        //     "command": "artillery run tests/load/staging/getGlobalLdr.yml --config tests/load/staging/config/loadMedium.yml --output tests/load/staging/output/r_getGlobalLdrM.json",
+        // },
+        // {
+        //     "label": "r_getGlobalLdrM", // GENERATE GET GLOBAL LEADERBOARDS REPORT
+        //     "type": "shell",
+        //     "command": "artillery report tests/load/staging/output/r_getGlobalLdrM.json",
+        // },
+        // {
+        //     "label": "getChlContributorsM", // 
+        //     "type": "shell",
+        //     "command": "artillery run tests/load/staging/getChlContributors.yml --config tests/load/staging/config/loadMedium.yml --output tests/load/staging/output/r_getChlContributorsM.json",
+        // },
+        // {
+        //     "label": "r_getChlContributorsM", // 
+        //     "type": "shell",
+        //     "command": "artillery report tests/load/staging/output/r_getChlContributorsM.json",
+        // },
+   
+
+        // {
+        //     "label": "Medium STAGING: Get Challenges", //EXECUTE
+        //     "type": "shell",
+        //     "command": "echo Executed Get Challenges",
+        //     "dependsOrder": "sequence",
+        //     "dependsOn": ["getChallengesM", "r_getChallengesM"],
+        //     "group": "test"
+        // },
+        // {
+        //     "label": "Medium STAGING: Get Challenge Contributions", //EXECUTE
+        //     "type": "shell",
+        //     "command": "echo Executed Get Challenge Contributions",
+        //     "dependsOrder": "sequence",
+        //     "dependsOn": ["getChlContrM", "r_getChlContrM"],
+        //     "group": "test"
+        // },
+        // {
+        //     "label": "Medium STAGING: Get Global Leaderboards", //EXECUTE
+        //     "type": "shell",
+        //     "command": "echo Executed Get Global Leaderboards",
+        //     "dependsOrder": "sequence",
+        //     "dependsOn": ["getGlobalLdrM", "r_getGlobalLdrM"],
+        //     "group": "test"
+        // },
+        // {
+        //     "label": "Medium STAGING: Get Challenge Contributors", //EXECUTE
+        //     "type": "shell",
+        //     "command": "echo Executed Get Challenge Contributors",
+        //     "dependsOrder": "sequence",
+        //     "dependsOn": ["getChlContributorsM", "r_getChlContributorsM"],
+        //     "group": "test"
+        // },
+        // // {
+        // //     "label": "POST COMMENT", //EXECUTE
+        // //     "type": "shell",
+        // //     "command": "echo POST COMMENT",
+        // //     "dependsOrder": "sequence",
+        // //     "dependsOn": ["postComment", "r_postComment"],
+        // //     "group": "test"
+        // // },
+        // {
+        //     "label": "Medium STAGING: Consecutive Test Runs", //EXECUTE
+        //     "type": "shell",
+        //     "command": "echo Executed multiple test runs",
+        //     "dependsOrder": "sequence",
+        //     "dependsOn": ["getChallengesM", "r_getChallengesM","getChlContrM", "r_getChlContrM", "getChlContributorsM", "r_getChlContributorsM", "getGlobalLdrM", "r_getGlobalLdrM"],
+        //     "group": "test"
+        // },
+        // ///////////////////////////////////////////////////// H I G H /////////////////////////////////////////////////////////////////////
+
+        // {
+        //     "label": "getChallengesH", // GET CHALLENGES
+        //     "type": "shell",
+        //     "command": "artillery run tests/load/staging/getChallenges.yml --config tests/load/staging/config/loadHigh.yml --output tests/load/staging/output/r_getChallengesH.json",
+        // },
+        // {
+        //     "label": "r_getChallengesH", // GENERATE GET CHALLENGES REPORT
+        //     "type": "shell",
+        //     "command": "artillery report tests/load/staging/output/r_getChallengesH.json",
+        // },
+        // {
+        //     "label": "getChlContrH", // GET CHALLENGE CONTRIBUTIONS
+        //     "type": "shell",
+        //     "command": "artillery run tests/load/staging/getChlContr.yml --config tests/load/staging/config/loadHigh.yml --output tests/load/staging/output/r_getChlContrH.json",
+
+        // },
+        // {
+        //     "label": "r_getChlContrH", // GENERATE GET CHALLENGE CONTRIBUTION REPORT
+        //     "type": "shell",
+        //     "command": "artillery report tests/load/staging/output/r_getChlContrH.json",
+        // },
+        // {
+        //     "label": "getGlobalLdrH", // GET GLOBAL LEADERBOARDS
+        //     "type": "shell",
+        //     "command": "artillery run tests/load/staging/getGlobalLdr.yml --config tests/load/staging/config/loadHigh.yml --output tests/load/staging/output/r_getGlobalLdrH.json",
+        // },
+        // {
+        //     "label": "r_getGlobalLdrH", // GENERATE GET GLOBAL LEADERBOARDS REPORT
+        //     "type": "shell",
+        //     "command": "artillery report tests/load/staging/output/r_getGlobalLdrH.json",
+        // },
+        // {
+        //     "label": "getChlContributorsH", // 
+        //     "type": "shell",
+        //     "command": "artillery run tests/load/staging/getChlContributors.yml --config tests/load/staging/config/loadHigh.yml --output tests/load/staging/output/r_getChlContributorsH.json",
+        // },
+        // {
+        //     "label": "r_getChlContributorsH", // 
+        //     "type": "shell",
+        //     "command": "artillery report tests/load/staging/output/r_getChlContributorsH.json",
+        // },
+        // // {
+        // //     "label": "postComment", // 
+        // //     "type": "shell",
+        // //     "command": "artillery run tests/load/prod/postComment.yml --config tests/load/prod/config/loadHigh.yml --output tests/load/output/r_postComment.json",
+        // // },
+        // // {
+        // //     "label": "r_postComment", // 
+        // //     "type": "shell",
+        // //     "command": "artillery report tests/load/output/r_postComment.json",
+        // // },
+
+
+        // {
+        //     "label": "High STAGING: Get Challenges", //EXECUTE
+        //     "type": "shell",
+        //     "command": "echo Executed Get Challenges",
+        //     "dependsOrder": "sequence",
+        //     "dependsOn": ["getChallengesH", "r_getChallengesH"],
+        //     "group": "test"
+        // },
+        // {
+        //     "label": "High STAGING: Get Challenge Contributions", //EXECUTE
+        //     "type": "shell",
+        //     "command": "echo Executed Get Challenge Contributions",
+        //     "dependsOrder": "sequence",
+        //     "dependsOn": ["getChlContrH", "r_getChlContrH"],
+        //     "group": "test"
+        // },
+        // {
+        //     "label": "High STAGING: Get Global Leaderboards", //EXECUTE
+        //     "type": "shell",
+        //     "command": "echo Executed Get Global Leaderboards",
+        //     "dependsOrder": "sequence",
+        //     "dependsOn": ["getGlobalLdrH", "r_getGlobalLdrH"],
+        //     "group": "test"
+        // },
+        // {
+        //     "label": "High STAGING: Get Challenge Contributors", //EXECUTE
+        //     "type": "shell",
+        //     "command": "echo Executed Get Challenge Contributors",
+        //     "dependsOrder": "sequence",
+        //     "dependsOn": ["getChlContributorsH", "r_getChlContributorsH"],
+        //     "group": "test"
+        // },
+        // // {
+        // //     "label": "POST COMMENT", //EXECUTE
+        // //     "type": "shell",
+        // //     "command": "echo POST COMMENT",
+        // //     "dependsOrder": "sequence",
+        // //     "dependsOn": ["postComment", "r_postComment"],
+        // //     "group": "test"
+        // // },
+        // {
+        //     "label": "High STAGING: Consecutive Test Runs", //EXECUTE
+        //     "type": "shell",
+        //     "command": "echo Executed multiple test runs",
+        //     "dependsOrder": "sequence",
+        //     "dependsOn": ["getChallengesH", "r_getChallengesH","getChlContrH", "r_getChlContrH", "getChlContributorsH", "r_getChlContributorsH", "getGlobalLdrH", "r_getGlobalLdrH"],
+        //     "group": "test"
+        // },
+
+    ]
+}

@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Artillery report</title>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.min.js' charset='utf-8'></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metrics-graphics/2.6.0/metricsgraphics.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/metrics-graphics/2.6.0/metricsgraphics.min.js"></script>
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+  <link href='https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js" charset="utf-8"></script>
+
+  <style>
+  body, p, li {
+    font-family: sans-serif;
+    font-size: 10pt;
+  }
+
+  h1 {
+    font-size: 18pt;
+    font-weight: bold;
+  }
+
+  #errorsContainer > p {
+    color: #009900;
+  }
+
+  #footer {
+    padding: 1em;
+    font-size: 0.8em;
+    color: #999;
+    text-align: center;
+    margin-top: 1em;
+    background-color: #eee;
+  }
+  #editor {
+    font-size: 8pt;
+    height: 20em;
+  }
+  </style>
+
+  <script>
+  window.Report = {
+  "aggregate": {
+    "timestamp": "2019-10-18T07:37:03.676Z",
+    "scenariosCreated": 3600,
+    "scenariosCompleted": 3600,
+    "requestsCompleted": 3600,
+    "latency": {
+      "min": 885.3,
+      "max": 56472.3,
+      "median": 26312.6,
+      "p95": 51410.9,
+      "p99": 56005.5
+    },
+    "rps": {
+      "count": 3600,
+      "mean": 20.39
+    },
+    "scenarioDuration": {
+      "min": 889.2,
+      "max": 56475.7,
+      "median": 26315.7,
+      "p95": 51513.2,
+      "p99": 56009.8
+    },
+    "scenarioCounts": {
+      "0": 3600
+    },
+    "errors": {},
+    "codes": {
+      "200": 3600
+    },
+    "matches": 0,
+    "customStats": {
+      "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+        "min": 888,
+        "max": 56475,
+        "median": 26314,
+        "p95": 51510.5,
+        "p99": 56008
+      }
+    },
+    "counters": {
+      "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 3600
+    },
+    "scenariosAvoided": 0,
+    "phases": [
+      {
+        "duration": 120,
+        "arrivalRate": 30,
+        "name": "High Load"
+      }
+    ]
+  },
+  "intermediate": [
+    {
+      "timestamp": "2019-10-18T07:34:17.045Z",
+      "scenariosCreated": 299,
+      "scenariosCompleted": 187,
+      "requestsCompleted": 187,
+      "latency": {
+        "min": 885.3,
+        "max": 3510.7,
+        "median": 2118.9,
+        "p95": 3204.2,
+        "p99": 3478.3
+      },
+      "rps": {
+        "count": 299,
+        "mean": 30.11
+      },
+      "scenarioDuration": {
+        "min": 889.2,
+        "max": 3514.4,
+        "median": 2123.8,
+        "p95": 3207.2,
+        "p99": 3482.3
+      },
+      "scenarioCounts": {
+        "0": 299
+      },
+      "errors": {},
+      "codes": {
+        "200": 187
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 888,
+          "max": 3514,
+          "median": 2122,
+          "p95": 3206.7,
+          "p99": 3481.3
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 187
+      },
+      "concurrency": 112,
+      "pendingRequests": 112,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:34:27.044Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 214,
+      "requestsCompleted": 215,
+      "latency": {
+        "min": 3729,
+        "max": 6662.6,
+        "median": 5073.4,
+        "p95": 6452.8,
+        "p99": 6613.9
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30.03
+      },
+      "scenarioDuration": {
+        "min": 3733.4,
+        "max": 7122.6,
+        "median": 5065.4,
+        "p95": 6487.1,
+        "p99": 6650.8
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 215
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 3732,
+          "max": 7121,
+          "median": 5064,
+          "p95": 6485.6,
+          "p99": 6650
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 214
+      },
+      "concurrency": 198,
+      "pendingRequests": 197,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:34:37.043Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 211,
+      "requestsCompleted": 210,
+      "latency": {
+        "min": 6690.9,
+        "max": 9567.7,
+        "median": 8226.7,
+        "p95": 9439.9,
+        "p99": 9554.8
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30
+      },
+      "scenarioDuration": {
+        "min": 6696.4,
+        "max": 9577.1,
+        "median": 8215.6,
+        "p95": 9442.5,
+        "p99": 9558.1
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 210
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 6695,
+          "max": 9570,
+          "median": 8214,
+          "p95": 9440.7,
+          "p99": 9557
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 211
+      },
+      "concurrency": 287,
+      "pendingRequests": 287,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:34:47.042Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 214,
+      "requestsCompleted": 214,
+      "latency": {
+        "min": 9545,
+        "max": 12535.5,
+        "median": 11068.2,
+        "p95": 12296.8,
+        "p99": 12497.5
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30
+      },
+      "scenarioDuration": {
+        "min": 9547.9,
+        "max": 12539.2,
+        "median": 11086,
+        "p95": 12302.1,
+        "p99": 12500.6
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 214
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 9546,
+          "max": 12538,
+          "median": 11084.5,
+          "p95": 12299,
+          "p99": 12499.5
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 214
+      },
+      "concurrency": 373,
+      "pendingRequests": 373,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:34:57.043Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 210,
+      "requestsCompleted": 210,
+      "latency": {
+        "min": 12415,
+        "max": 15544.2,
+        "median": 13975.8,
+        "p95": 15434.1,
+        "p99": 15525.6
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30
+      },
+      "scenarioDuration": {
+        "min": 12418,
+        "max": 15548.2,
+        "median": 13984.9,
+        "p95": 15437.8,
+        "p99": 15530
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 210
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 12417,
+          "max": 15548,
+          "median": 13983.5,
+          "p95": 15437,
+          "p99": 15529.2
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 210
+      },
+      "concurrency": 463,
+      "pendingRequests": 463,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:35:07.044Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 213,
+      "requestsCompleted": 213,
+      "latency": {
+        "min": 15552.7,
+        "max": 18338,
+        "median": 16917.3,
+        "p95": 18199.3,
+        "p99": 18315.9
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30
+      },
+      "scenarioDuration": {
+        "min": 15555.5,
+        "max": 18342.1,
+        "median": 16921.1,
+        "p95": 18202.9,
+        "p99": 18318.9
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 213
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 15554,
+          "max": 18340,
+          "median": 16920,
+          "p95": 18201.7,
+          "p99": 18317.5
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 213
+      },
+      "concurrency": 550,
+      "pendingRequests": 550,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:35:17.043Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 213,
+      "requestsCompleted": 213,
+      "latency": {
+        "min": 18382.8,
+        "max": 21331,
+        "median": 19801,
+        "p95": 21116.9,
+        "p99": 21300.1
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30
+      },
+      "scenarioDuration": {
+        "min": 18385.5,
+        "max": 21334.7,
+        "median": 19814.2,
+        "p95": 21119.8,
+        "p99": 21304.5
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 213
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 18385,
+          "max": 21333,
+          "median": 19804,
+          "p95": 21118.1,
+          "p99": 21303.1
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 213
+      },
+      "concurrency": 637,
+      "pendingRequests": 637,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:35:27.043Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 207,
+      "requestsCompleted": 207,
+      "latency": {
+        "min": 21255.1,
+        "max": 24578.5,
+        "median": 22772.2,
+        "p95": 24257.3,
+        "p99": 24407.7
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30
+      },
+      "scenarioDuration": {
+        "min": 21259.7,
+        "max": 24581.9,
+        "median": 22774.9,
+        "p95": 24260,
+        "p99": 24410.8
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 207
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 21258,
+          "max": 24580,
+          "median": 22774,
+          "p95": 24259.2,
+          "p99": 24409.8
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 207
+      },
+      "concurrency": 730,
+      "pendingRequests": 730,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:35:37.043Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 211,
+      "requestsCompleted": 211,
+      "latency": {
+        "min": 24358,
+        "max": 27404.5,
+        "median": 25980.3,
+        "p95": 27226.8,
+        "p99": 27355.1
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30
+      },
+      "scenarioDuration": {
+        "min": 24367.5,
+        "max": 27408.5,
+        "median": 25983.2,
+        "p95": 27230.9,
+        "p99": 27359.9
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 211
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 24366,
+          "max": 27408,
+          "median": 25982,
+          "p95": 27228.8,
+          "p99": 27358.5
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 211
+      },
+      "concurrency": 819,
+      "pendingRequests": 819,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:35:47.043Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 206,
+      "requestsCompleted": 206,
+      "latency": {
+        "min": 27341.8,
+        "max": 30640,
+        "median": 28931,
+        "p95": 30392.1,
+        "p99": 30520.1
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30
+      },
+      "scenarioDuration": {
+        "min": 27345.7,
+        "max": 30643.8,
+        "median": 28934.9,
+        "p95": 30394.9,
+        "p99": 30524
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 206
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 27344,
+          "max": 30643,
+          "median": 28933.5,
+          "p95": 30393.8,
+          "p99": 30523.2
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 206
+      },
+      "concurrency": 913,
+      "pendingRequests": 913,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:35:57.042Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 195,
+      "requestsCompleted": 195,
+      "latency": {
+        "min": 30486.1,
+        "max": 33902.5,
+        "median": 32163.2,
+        "p95": 33709.3,
+        "p99": 33860
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30
+      },
+      "scenarioDuration": {
+        "min": 30494.3,
+        "max": 33905.9,
+        "median": 32165.9,
+        "p95": 33716.7,
+        "p99": 33863.5
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 195
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 30488,
+          "max": 33904,
+          "median": 32165,
+          "p95": 33714.8,
+          "p99": 33862.5
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 195
+      },
+      "concurrency": 1018,
+      "pendingRequests": 1018,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:36:07.043Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 203,
+      "requestsCompleted": 204,
+      "latency": {
+        "min": 33809.1,
+        "max": 37073.3,
+        "median": 35630.1,
+        "p95": 36878.9,
+        "p99": 37034.2
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30
+      },
+      "scenarioDuration": {
+        "min": 33812.1,
+        "max": 37658.2,
+        "median": 35623.1,
+        "p95": 36919.4,
+        "p99": 37060.9
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 204
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 33811,
+          "max": 37657,
+          "median": 35622,
+          "p95": 36918.5,
+          "p99": 37059.5
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 203
+      },
+      "concurrency": 1115,
+      "pendingRequests": 1114,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:36:17.043Z",
+      "scenariosCreated": 1,
+      "scenariosCompleted": 198,
+      "requestsCompleted": 197,
+      "latency": {
+        "min": 37120,
+        "max": 40570.7,
+        "median": 39276.7,
+        "p95": 40428.6,
+        "p99": 40546.2
+      },
+      "rps": {
+        "count": 1,
+        "mean": 0.1
+      },
+      "scenarioDuration": {
+        "min": 37122.9,
+        "max": 40579.5,
+        "median": 39287.1,
+        "p95": 40437,
+        "p99": 40552.7
+      },
+      "scenarioCounts": {
+        "0": 1
+      },
+      "errors": {},
+      "codes": {
+        "200": 197
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 37122,
+          "max": 40577,
+          "median": 39284.5,
+          "p95": 40434.8,
+          "p99": 40550.9
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 198
+      },
+      "concurrency": 918,
+      "pendingRequests": 918,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:36:27.061Z",
+      "scenariosCreated": 0,
+      "scenariosCompleted": 209,
+      "requestsCompleted": 209,
+      "latency": {
+        "min": 40568.5,
+        "max": 43692.7,
+        "median": 42181.7,
+        "p95": 43519.4,
+        "p99": 43665.2
+      },
+      "rps": {
+        "count": 0,
+        "mean": null
+      },
+      "scenarioDuration": {
+        "min": 40571.6,
+        "max": 43696.2,
+        "median": 42193.6,
+        "p95": 43528.3,
+        "p99": 43668.8
+      },
+      "scenarioCounts": {},
+      "errors": {},
+      "codes": {
+        "200": 209
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 40570,
+          "max": 43695,
+          "median": 42192,
+          "p95": 43526.6,
+          "p99": 43667.4
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 209
+      },
+      "concurrency": 709,
+      "pendingRequests": 709,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:36:37.058Z",
+      "scenariosCreated": 0,
+      "scenariosCompleted": 208,
+      "requestsCompleted": 208,
+      "latency": {
+        "min": 43595.4,
+        "max": 46576.5,
+        "median": 45124.5,
+        "p95": 46349.5,
+        "p99": 46524.3
+      },
+      "rps": {
+        "count": 0,
+        "mean": null
+      },
+      "scenarioDuration": {
+        "min": 43599.5,
+        "max": 46579.5,
+        "median": 45132,
+        "p95": 46358.1,
+        "p99": 46528.6
+      },
+      "scenarioCounts": {},
+      "errors": {},
+      "codes": {
+        "200": 208
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 43598,
+          "max": 46578,
+          "median": 45130,
+          "p95": 46356.7,
+          "p99": 46526.9
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 208
+      },
+      "concurrency": 501,
+      "pendingRequests": 501,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:36:47.052Z",
+      "scenariosCreated": 0,
+      "scenariosCompleted": 209,
+      "requestsCompleted": 209,
+      "latency": {
+        "min": 46616.4,
+        "max": 49713,
+        "median": 48152,
+        "p95": 49534.3,
+        "p99": 49686.6
+      },
+      "rps": {
+        "count": 0,
+        "mean": null
+      },
+      "scenarioDuration": {
+        "min": 46619.3,
+        "max": 49725.6,
+        "median": 48156.7,
+        "p95": 49550.4,
+        "p99": 49695.7
+      },
+      "scenarioCounts": {},
+      "errors": {},
+      "codes": {
+        "200": 209
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 46618,
+          "max": 49722,
+          "median": 48156,
+          "p95": 49546.2,
+          "p99": 49693.4
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 209
+      },
+      "concurrency": 292,
+      "pendingRequests": 292,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:36:57.047Z",
+      "scenariosCreated": 0,
+      "scenariosCompleted": 175,
+      "requestsCompleted": 175,
+      "latency": {
+        "min": 49666.3,
+        "max": 53689.4,
+        "median": 50852.2,
+        "p95": 53163,
+        "p99": 53643.4
+      },
+      "rps": {
+        "count": 0,
+        "mean": null
+      },
+      "scenarioDuration": {
+        "min": 49669.6,
+        "max": 53693,
+        "median": 50881.2,
+        "p95": 53172.5,
+        "p99": 53653.7
+      },
+      "scenarioCounts": {},
+      "errors": {},
+      "codes": {
+        "200": 175
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 49668,
+          "max": 53691,
+          "median": 50874,
+          "p95": 53170,
+          "p99": 53651
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 175
+      },
+      "concurrency": 117,
+      "pendingRequests": 117,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T07:37:03.649Z",
+      "scenariosCreated": 0,
+      "scenariosCompleted": 117,
+      "requestsCompleted": 117,
+      "latency": {
+        "min": 53823.1,
+        "max": 56472.3,
+        "median": 55733.8,
+        "p95": 56408.2,
+        "p99": 56463.4
+      },
+      "rps": {
+        "count": 0,
+        "mean": null
+      },
+      "scenarioDuration": {
+        "min": 53827,
+        "max": 56475.7,
+        "median": 55740.3,
+        "p95": 56414.1,
+        "p99": 56467
+      },
+      "scenarioCounts": {},
+      "errors": {},
+      "codes": {
+        "200": 117
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 53826,
+          "max": 56475,
+          "median": 55739,
+          "p95": 56413.5,
+          "p99": 56466.3
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 117
+      },
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    }
+  ]
+};
+  </script>
+
+  <style>
+      h1 {
+        line-height: 200%;
+      }
+
+      body {
+          background-color: #fcfcfc;
+      }
+
+      .container {
+          width: 100%;
+          min-width: 960px;
+      }
+  </style>
+
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="row" id="header">
+  <div class="col-lg-4 col-lg-offset-4">
+    <pre style="font-size: 5pt; background-color: #fcfcfc; border: none;">
+            _   _ _ _                                                _
+  __ _ _ __| |_(_) | | ___ _ __ _   _      _ __ ___ _ __   ___  _ __| |_
+ / _` | '__| __| | | |/ _ \ '__| | | |    | '__/ _ \ '_ \ / _ \| '__| __|
+| (_| | |  | |_| | | |  __/ |  | |_| |    | | |  __/ |_) | (_) | |  | |_
+ \__,_|_|   \__|_|_|_|\___|_|   \__, |    |_|  \___| .__/ \___/|_|   \__|
+                                |___/              |_|
+
+    </pre>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="text-center" id="page-title">Test run on <span id="timestamp">date</span></h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-3">
+    <p><strong>Summary</strong></p>
+    <table class="table table-bordered table-hover table-condensed">
+      <tbody>
+        <tr>
+          <td>Test duration</td>
+          <td><span id="testDuration">0</span> sec</td>
+        </tr>
+        <tr>
+          <td>Scenarios created</td>
+          <td><span id="scenariosCreated">0</span></td>
+        </tr>
+
+        <tr>
+          <td>Scenarios completed</td>
+          <td><span id="scenariosCompleted">0</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-lg-5" id="scenarioCountsContainer">
+    <div>
+      <strong>Scenario counts:</strong>
+
+      <p></p>
+
+      <table class="table table-bordered table-hover table-condensed" id="scenarioCounts">
+      </table>
+    </div>
+  </div>
+
+  <div class="col-lg-1">
+    <div id="codesContainer">
+      <strong>Codes</strong>
+
+      <p></p>
+
+      <table class="table table-bordered table-hover table-condensed" id="codes">
+      </table>
+    </div>
+  </div>
+
+  <div class="col-lg-3">
+    <div id="errorsContainer">
+      <strong>Errors</strong>
+
+      <p></p>
+
+      <table class="table table-bordered table-hover table-condensed" id="errors">
+      </table>
+    </div>
+  </div>
+</div> <!-- /.row -->
+
+<div class="row">
+  <div class="text-center col-lg-12">
+    <h2>Charts</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="latency-histogram text-center col-lg-12"></div>
+</div>
+
+<div class="row">
+  <div class="latency text-center col-lg-12"></div>
+</div>
+
+<div class="latency-legend"></div>
+
+<div class="row">
+
+</div>
+
+<div class="row">
+  <div class="concurrency text-center col-lg-12"></div>
+</div>
+
+<div class="row">
+  <div class="rps-mean text-center col-lg-12"></div>
+</div>
+<div class="row">
+  <div class="rps-count text-center col-lg-12"></div>
+</div>
+
+<div class="row">
+  <div class="codes-line text-center col-lg-12"></div>
+</div>
+<div class="row">
+  <div class="errors-line text-center col-lg-12"></div>
+</div>
+
+
+  
+    
+    <div class="row">
+      <div class="id_3078 text-center col-lg-12"></div>
+      <script>
+      var histogramData = _.map(Report.aggregate.customStats['/api/Leaderboard/global?PageNumber=1000&PageSize=1000'], function(v, k) { return {bin: k, value: v} });
+      MG.data_graphic({
+        chart_type: 'bar',
+        x_label: 'Percentile',
+        y_label: '(ms)',
+        animate_on_load: true,
+        title: '/api/Leaderboard/global?PageNumber=1000&PageSize=1000 distribution',
+        description: 'Distribution of /api/Leaderboard/global?PageNumber=1000&PageSize=1000',
+        target: '.id_3078',
+        data: histogramData,
+        x_accessor: 'bin',
+        y_accessor: 'value',
+        binned: true,
+        height: 250,
+        interpolate: 'monotone',
+        padding_percentage: 0,
+        bar_orientation: 'vertical',
+        width: 450
+      });
+      </script>
+    </div>
+  
+
+
+</div>
+
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2">
+    <h3 class="text-center">Raw report data</h3>
+    <p>This is the raw JSON stats output that the report was generated from.</p>
+    <div id="editor">
+    </div>
+  </div>
+</div>
+
+<script>
+var editor = ace.edit("editor");
+editor.getSession().setMode("ace/mode/javascript");
+editor.setValue(JSON.stringify(Report, null, 2));
+editor.gotoLine(1);editor.setHighlightActiveLine(false);
+
+var l = _;
+
+$('#timestamp').html(moment(Report.aggregate.timestamp).format('DD MMM YYYY HH:mm:SS'));
+$('#testDuration').html(l.size(Report.intermediate) * 10);
+$('#scenariosCompleted').html(Report.aggregate.scenariosCompleted);
+$('#scenariosCreated').html(Report.aggregate.scenariosCreated);
+
+var markers = [];
+if(l.size(Report.phases) > 0) {
+  markers = l.foldl(Report.phases, function(acc, phase, index) {
+    var label = phase.name || 'Phase ' + (index + 1);
+    var timestamp = (index === 0) ? 0 : Report.phases[index - 1].duration + acc[index - 1].timestamp;
+
+    acc.push({
+      timestamp: timestamp,
+      label: label
+    });
+
+    return acc;
+  }, []);
+}
+
+if (l.size(Report.aggregate.scenarioCounts) > 0) {
+  l.each(Report.aggregate.scenarioCounts, function(count, name) {
+    var $tdName = $('<td>' + name + '</td>');
+    var percentage = Math.round(count / Report.aggregate.scenariosCreated * 100 * 1000) / 1000;
+    var $tdCount = $('<td>' + count + ' (' + percentage + '%)' + '</td>');
+    var $el = $('<tr></tr>')
+      .append($tdName)
+      .append($tdCount)
+      .appendTo($('#scenarioCounts'));
+  });
+} else {
+  $('#scenarioCountsContainer').hide();
+}
+
+if (l.size(Report.aggregate.codes) > 0) {
+  l.each(Report.aggregate.codes, function(count, code) {
+    var anchor = '';
+    if (code >= 100 && code < 200) {
+      anchor = '#1xx_Informational';
+    } else if (code >= 200 && code < 300) {
+      anchor = '#2xx_Success';
+    } else if (code >= 300 && code < 400) {
+      anchor = '#3xx_Redirection';
+    } else if (code >= 400 && code < 500) {
+      anchor = '#4xx_Client_Error';
+    } else if (code >= 500 && code < 600) {
+      anchor = '#5xx_Server_Error';
+    }
+
+    var $a = $('<a>' + code + '</a>').attr('href', 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes' + anchor);
+    var $td = $('<td></td>').append($a);
+    var $el = $('<tr></tr>')
+      .append($td)
+      .append($('<td>' + count + '</td>'))
+      .appendTo($('#codes'));
+  });
+} else {
+  $('#codesContainer').hide();
+}
+
+if (l.size(Report.aggregate.errors) > 0) {
+  l.each(Report.aggregate.errors, function(count, code) {
+    var $el = $('<tr></tr>')
+      .append($('<td>' + code + '</td>'))
+      .append($('<td>' + count + '</td>'))
+      .appendTo($('#errors'));
+  });
+} else {
+  $('#errorsContainer > p').html('&#10004; Test completed without network or OS errors.');
+}
+
+var histogramData = l.map(Report.aggregate.latency, function(v, k) { return {bin: k, value: v} });
+
+MG.data_graphic({
+  chart_type: 'bar',
+  x_label: 'Percentile',
+  y_label: '(ms)',
+  animate_on_load: true,
+  title: 'Overall Latency Distribution',
+  description: 'Distribution of all observed response latencies',
+  target: '.latency-histogram',
+  data: histogramData,
+  x_accessor: 'bin',
+  y_accessor: 'value',
+  binned: true,
+  height: 250,
+  interpolate: 'monotone',
+  padding_percentage: 0,
+  bar_orientation: 'vertical',
+  width: 450
+});
+
+var chartData = l.map(
+  window.Report.intermediate,
+  function(o,i) {
+    return {
+      timestamp: i*10+10,
+
+      rpsMean: o.rps.mean,
+      rpsCount: o.rps.count,
+      concurrency: o.concurrency,
+      latencyMax: o.latency.max,
+      latencyp99: o.latency.p99,
+      latencyp95: o.latency.p95,
+      latencyMedian: o.latency.median,
+      latencyMin: o.latency.min
+    }
+  });
+
+//
+// Response codes
+//
+
+if (l.size(Report.aggregate.codes) > 0) {
+  var codesData = l.foldl(Report.intermediate, function(acc, o, i) {
+    var res = {};
+    res.timestamp = i*10+10;
+    l.each(o.codes, function(count, code) {
+      res[code] = count;
+    });
+    acc.push(res);
+    return acc;
+  }, []);
+  var uniqueCodes = l.foldl(Report.intermediate, function(acc, o) {
+    l.each(o.codes, function(count, code) {
+      if (l.indexOf(acc, code) === -1) {
+        acc.push(code);
+      }
+    });
+    return acc;
+  }, []);
+
+  MG.data_graphic({
+    x_label: 'Time',
+    y_label: 'Count',
+    title: 'HTTP codes',
+    description: 'Occurence of HTTP response codes',
+    target: '.codes-line',
+    data: codesData,
+    x_accessor: 'timestamp',
+    y_accessor: uniqueCodes,
+    legend: uniqueCodes,
+    right: 50,
+    chart_type: 'line',
+    area: false,
+    markers: markers,
+    width: 900
+  });
+}
+
+//
+// Errors
+//
+
+if (l.size(Report.aggregate.errors) > 0) {
+  var errorData = l.foldl(Report.intermediate, function(acc, o, i) {
+    var res = {};
+    res.timestamp = i*10+10;
+    l.each(o.errors, function(count, name) {
+      res[name] = count;
+    });
+    acc.push(res);
+    return acc;
+  }, []);
+  var uniqueErrors = l.foldl(Report.intermediate, function(acc, o) {
+    l.each(o.errors, function(count, name) {
+      if (l.indexOf(acc, name) === -1) {
+        acc.push(name);
+      }
+    });
+    return acc;
+  }, []);
+
+  MG.data_graphic({
+    title: 'Error Codes',
+    description: 'Occurence of error codes',
+    target: '.errors-line',
+    data: errorData,
+    x_accessor: 'timestamp',
+    y_accessor: uniqueErrors,
+    chart_type: 'line',
+    area: false,
+    markers: markers
+  });
+
+}
+
+//
+// Latency
+//
+MG.data_graphic({
+  chart_type: 'line',
+  x_label: 'Time',
+  y_label: '(ms)',
+  animate_on_load: true,
+  area: false,
+  title: "Latency At Intervals",
+  description: "Latency values at different points during the test run",
+  data: chartData,
+  target: '.latency',
+  width: 900,
+  x_accessor: 'timestamp',
+  y_accessor: ['latencyMin', 'latencyMedian', 'latencyp95', 'latencyMax'],
+  legend: ['min', 'p50', 'p95', 'max'],
+  //legend_target: '.latency-legend',
+  right: 50,
+  interpolate: 'monotone',
+  mouseover: function(d, i) {
+  },
+  markers: markers
+        });
+
+            MG.data_graphic({
+            animate_on_load: true,
+            area: false,
+            y_label: 'Count',
+            x_label: 'Time',
+            title: 'Concurrent users',
+            description: 'Concurrent users',
+            data: chartData,
+            target: '.concurrency',
+            x_accessor: 'timestamp',
+            y_accessor: ['concurrency'],
+            interpolate: 'monotone',
+            markers: markers,
+            width: 900
+            });
+
+MG.data_graphic({
+  animate_on_load: true,
+  area: false,
+  y_label: 'Count',
+  x_label: 'Time',
+  title: 'Mean RPS',
+  description: 'Mean requests per second',
+  data: chartData,
+  target: '.rps-mean',
+  x_accessor: 'timestamp',
+  y_accessor: ['rpsMean'],
+  interpolate: 'monotone',
+  markers: markers,
+  width: 900
+});
+
+MG.data_graphic({
+  animate_on_load: true,
+  area: false,
+  y_label: 'Count',
+  x_label: 'Time',
+  title: 'RPS Count',
+  description: 'Count of requests per second',
+  data: chartData,
+  target: '.rps-count',
+  x_accessor: 'timestamp',
+  y_accessor: ['rpsCount'],
+  interpolate: 'monotone',
+  markers: markers,
+  width: 900
+});
+</script>
+<div id="footer">
+  <footer>This report was created with <a href="https://artillery.io">Artillery</a> - free open-source load-testing for HTTP and WebSockets</footer>
+</div>
+</body>
+</html>

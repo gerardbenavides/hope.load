@@ -1,0 +1,402 @@
+{
+  "aggregate": {
+    "timestamp": "2019-11-06T09:58:42.923Z",
+    "scenariosCreated": 150,
+    "scenariosCompleted": 150,
+    "requestsCompleted": 150,
+    "latency": {
+      "min": 364.6,
+      "max": 1681.8,
+      "median": 369.9,
+      "p95": 885,
+      "p99": 1278.3
+    },
+    "rps": {
+      "count": 150,
+      "mean": 4.95
+    },
+    "scenarioDuration": {
+      "min": 370.3,
+      "max": 1688.5,
+      "median": 383.4,
+      "p95": 890.4,
+      "p99": 1286.8
+    },
+    "scenarioCounts": {
+      "0": 150
+    },
+    "errors": {},
+    "codes": {
+      "200": 150
+    },
+    "matches": 0,
+    "customStats": {
+      "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+        "min": 369,
+        "max": 1685,
+        "median": 380,
+        "p95": 889,
+        "p99": 1285
+      }
+    },
+    "counters": {
+      "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 150
+    },
+    "scenariosAvoided": 0,
+    "phases": [
+      {
+        "duration": 30,
+        "arrivalRate": 5,
+        "name": "Normal Load"
+      }
+    ]
+  },
+  "intermediate": [
+    {
+      "timestamp": "2019-11-06T09:58:22.390Z",
+      "scenariosCreated": 49,
+      "scenariosCompleted": 48,
+      "requestsCompleted": 48,
+      "latency": {
+        "min": 364.6,
+        "max": 1681.8,
+        "median": 370,
+        "p95": 884.6,
+        "p99": 1681.8
+      },
+      "rps": {
+        "count": 49,
+        "mean": 5.02
+      },
+      "scenarioDuration": {
+        "min": 370.3,
+        "max": 1688.5,
+        "median": 385.8,
+        "p95": 890.2,
+        "p99": 1688.5
+      },
+      "scenarioCounts": {
+        "0": 49
+      },
+      "errors": {},
+      "codes": {
+        "200": 48
+      },
+      "matches": 0,
+      "latencies": [
+        750382599,
+        745303700,
+        727524300,
+        365606800,
+        367735000,
+        372572600,
+        370383000,
+        379064700,
+        1681810599,
+        884505600,
+        368648099,
+        376297001,
+        371072800,
+        368002300,
+        368883000,
+        372201500,
+        372807300,
+        364641700,
+        371179000,
+        391351500,
+        369757100,
+        366255600,
+        370012500,
+        370678100,
+        368072100,
+        365961400,
+        372970800,
+        372928999,
+        370327300,
+        366504300,
+        368835300,
+        372968799,
+        368405000,
+        366833801,
+        369058000,
+        371317100,
+        371434801,
+        365716900,
+        369712700,
+        380439100,
+        368077000,
+        370077400,
+        368898800,
+        369212901,
+        365982900,
+        885006800,
+        368926699,
+        367749700
+      ],
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 369,
+          "max": 1685,
+          "median": 381.5,
+          "p95": 888.1,
+          "p99": 1685
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 48
+      },
+      "concurrency": 1,
+      "pendingRequests": 1,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-11-06T09:58:32.384Z",
+      "scenariosCreated": 50,
+      "scenariosCompleted": 50,
+      "requestsCompleted": 50,
+      "latency": {
+        "min": 365.4,
+        "max": 1192.5,
+        "median": 369.5,
+        "p95": 405.1,
+        "p99": 1192.5
+      },
+      "rps": {
+        "count": 50,
+        "mean": 5.01
+      },
+      "scenarioDuration": {
+        "min": 370.4,
+        "max": 1203.1,
+        "median": 382.5,
+        "p95": 417.2,
+        "p99": 1203.1
+      },
+      "scenarioCounts": {
+        "0": 50
+      },
+      "errors": {},
+      "codes": {
+        "200": 50
+      },
+      "matches": 0,
+      "latencies": [
+        366017199,
+        379902401,
+        370368601,
+        366796700,
+        366252600,
+        372117201,
+        370636400,
+        366856699,
+        373386300,
+        372411500,
+        369604999,
+        366477100,
+        366301200,
+        378251001,
+        369588000,
+        369491400,
+        366745000,
+        405123999,
+        372572500,
+        369383301,
+        366817999,
+        366151901,
+        365423000,
+        369065301,
+        991024500,
+        1192455400,
+        366343200,
+        369423199,
+        369167999,
+        370265599,
+        367551400,
+        369337900,
+        369988200,
+        378150000,
+        366722900,
+        368278801,
+        369395900,
+        371848400,
+        371133100,
+        368599700,
+        369679100,
+        376243000,
+        365979200,
+        369094100,
+        369713501,
+        380848700,
+        370046000,
+        367075600,
+        370219401,
+        372004600
+      ],
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 369,
+          "max": 1202,
+          "median": 377.5,
+          "p95": 408,
+          "p99": 1202
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 50
+      },
+      "concurrency": 1,
+      "pendingRequests": 1,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-11-06T09:58:42.390Z",
+      "scenariosCreated": 50,
+      "scenariosCompleted": 45,
+      "requestsCompleted": 45,
+      "latency": {
+        "min": 365.8,
+        "max": 1278.3,
+        "median": 369.8,
+        "p95": 923.3,
+        "p99": 1278.3
+      },
+      "rps": {
+        "count": 50,
+        "mean": 5
+      },
+      "scenarioDuration": {
+        "min": 373.1,
+        "max": 1286.8,
+        "median": 381.3,
+        "p95": 934.2,
+        "p99": 1286.8
+      },
+      "scenarioCounts": {
+        "0": 50
+      },
+      "errors": {},
+      "codes": {
+        "200": 45
+      },
+      "matches": 0,
+      "latencies": [
+        367090000,
+        369588300,
+        369808200,
+        374718299,
+        373095100,
+        868308000,
+        687006500,
+        372846499,
+        370551100,
+        366392001,
+        367349799,
+        377303400,
+        369406400,
+        366470200,
+        367713499,
+        377428100,
+        370429500,
+        368963700,
+        368460500,
+        371304101,
+        376680800,
+        368301600,
+        368536800,
+        371509499,
+        370744801,
+        366603600,
+        368109600,
+        373731200,
+        369942100,
+        367470100,
+        370672500,
+        381101000,
+        369140000,
+        365797500,
+        371095100,
+        373198000,
+        368001800,
+        366803099,
+        368328600,
+        378614701,
+        369442900,
+        366353899,
+        369127600,
+        1278319100,
+        1088226900
+      ],
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 371,
+          "max": 1285,
+          "median": 379,
+          "p95": 932.3,
+          "p99": 1285
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 45
+      },
+      "concurrency": 6,
+      "pendingRequests": 6,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-11-06T09:58:42.913Z",
+      "scenariosCreated": 1,
+      "scenariosCompleted": 7,
+      "requestsCompleted": 7,
+      "latency": {
+        "min": 372.2,
+        "max": 1254.6,
+        "median": 716.3,
+        "p95": 1254.6,
+        "p99": 1254.6
+      },
+      "rps": {
+        "count": 1,
+        "mean": 1.96
+      },
+      "scenarioDuration": {
+        "min": 387.5,
+        "max": 1262.5,
+        "median": 724.2,
+        "p95": 1262.5,
+        "p99": 1262.5
+      },
+      "scenarioCounts": {
+        "0": 1
+      },
+      "errors": {},
+      "codes": {
+        "200": 7
+      },
+      "matches": 0,
+      "latencies": [
+        803024901,
+        1254586000,
+        1071603499,
+        716319700,
+        376945700,
+        710688000,
+        372244501
+      ],
+      "customStats": {
+        "/api/Leaderboard/global?PageNumber=1000&PageSize=1000": {
+          "min": 385,
+          "max": 1261,
+          "median": 719,
+          "p95": 1261,
+          "p99": 1261
+        }
+      },
+      "counters": {
+        "code 200 on /api/Leaderboard/global?PageNumber=1000&PageSize=1000": 7
+      },
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    }
+  ]
+}

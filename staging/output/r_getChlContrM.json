@@ -1,0 +1,109 @@
+{
+  "aggregate": {
+    "timestamp": "2019-11-06T09:44:53.951Z",
+    "scenariosCreated": 20,
+    "scenariosCompleted": 0,
+    "requestsCompleted": 20,
+    "latency": {
+      "min": 641.9,
+      "max": 1697.3,
+      "median": 717,
+      "p95": 1627,
+      "p99": 1697.3
+    },
+    "rps": {
+      "count": 20,
+      "mean": 10.31
+    },
+    "scenarioDuration": {
+      "min": null,
+      "max": null,
+      "median": null,
+      "p95": null,
+      "p99": null
+    },
+    "scenarioCounts": {
+      "0": 20
+    },
+    "errors": {
+      "Failed expectations for request http://staging.api.gonna.netzon.se/api/Challenge/e43af362-2af4-44ee-b3a6-9a5f0e791022/contribution?PageNumber=1000&PageSize=1000": 20
+    },
+    "codes": {
+      "403": 20
+    },
+    "matches": 0,
+    "customStats": {},
+    "counters": {},
+    "scenariosAvoided": 0,
+    "phases": [
+      {
+        "duration": 1,
+        "arrivalRate": 20,
+        "name": "Medium Load"
+      }
+    ]
+  },
+  "intermediate": [
+    {
+      "timestamp": "2019-11-06T09:44:53.946Z",
+      "scenariosCreated": 20,
+      "scenariosCompleted": 0,
+      "requestsCompleted": 20,
+      "latency": {
+        "min": 641.9,
+        "max": 1697.3,
+        "median": 717,
+        "p95": 1627,
+        "p99": 1697.3
+      },
+      "rps": {
+        "count": 20,
+        "mean": 10.36
+      },
+      "scenarioDuration": {
+        "min": null,
+        "max": null,
+        "median": null,
+        "p95": null,
+        "p99": null
+      },
+      "scenarioCounts": {
+        "0": 20
+      },
+      "errors": {
+        "Failed expectations for request http://staging.api.gonna.netzon.se/api/Challenge/e43af362-2af4-44ee-b3a6-9a5f0e791022/contribution?PageNumber=1000&PageSize=1000": 20
+      },
+      "codes": {
+        "403": 20
+      },
+      "matches": 0,
+      "latencies": [
+        711439801,
+        713314899,
+        713352300,
+        709116901,
+        720141601,
+        713788900,
+        655697800,
+        721360800,
+        641920700,
+        684615400,
+        691479300,
+        701221001,
+        763737100,
+        771033500,
+        789756100,
+        770520600,
+        1338909800,
+        1556588599,
+        1697319399,
+        805430000
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    }
+  ]
+}

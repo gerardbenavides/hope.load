@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Artillery report</title>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.min.js' charset='utf-8'></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metrics-graphics/2.6.0/metricsgraphics.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/metrics-graphics/2.6.0/metricsgraphics.min.js"></script>
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+  <link href='https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js" charset="utf-8"></script>
+
+  <style>
+  body, p, li {
+    font-family: sans-serif;
+    font-size: 10pt;
+  }
+
+  h1 {
+    font-size: 18pt;
+    font-weight: bold;
+  }
+
+  #errorsContainer > p {
+    color: #009900;
+  }
+
+  #footer {
+    padding: 1em;
+    font-size: 0.8em;
+    color: #999;
+    text-align: center;
+    margin-top: 1em;
+    background-color: #eee;
+  }
+  #editor {
+    font-size: 8pt;
+    height: 20em;
+  }
+  </style>
+
+  <script>
+  window.Report = {
+  "aggregate": {
+    "timestamp": "2019-10-18T09:18:26.795Z",
+    "scenariosCreated": 3600,
+    "scenariosCompleted": 3600,
+    "requestsCompleted": 3600,
+    "latency": {
+      "min": 888.3,
+      "max": 61630.8,
+      "median": 32610,
+      "p95": 57489.6,
+      "p99": 61033.2
+    },
+    "rps": {
+      "count": 3600,
+      "mean": 19.82
+    },
+    "scenarioDuration": {
+      "min": 892.9,
+      "max": 61635.9,
+      "median": 32639.7,
+      "p95": 57498,
+      "p99": 61036
+    },
+    "scenarioCounts": {
+      "0": 3600
+    },
+    "errors": {},
+    "codes": {
+      "200": 3600
+    },
+    "matches": 0,
+    "customStats": {
+      "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+        "min": 892,
+        "max": 61634,
+        "median": 32639,
+        "p95": 57492.5,
+        "p99": 61034.5
+      }
+    },
+    "counters": {
+      "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 3600
+    },
+    "scenariosAvoided": 0,
+    "phases": [
+      {
+        "duration": 120,
+        "arrivalRate": 30,
+        "name": "High Load"
+      }
+    ]
+  },
+  "intermediate": [
+    {
+      "timestamp": "2019-10-18T09:15:35.125Z",
+      "scenariosCreated": 299,
+      "scenariosCompleted": 176,
+      "requestsCompleted": 176,
+      "latency": {
+        "min": 888.3,
+        "max": 4096.9,
+        "median": 2749.8,
+        "p95": 4001.7,
+        "p99": 4089.2
+      },
+      "rps": {
+        "count": 299,
+        "mean": 30.11
+      },
+      "scenarioDuration": {
+        "min": 892.9,
+        "max": 4751.1,
+        "median": 2754.9,
+        "p95": 4031.7,
+        "p99": 4173.2
+      },
+      "scenarioCounts": {
+        "0": 299
+      },
+      "errors": {},
+      "codes": {
+        "200": 176
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 892,
+          "max": 4750,
+          "median": 2754,
+          "p95": 4030.5,
+          "p99": 4171.9
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 176
+      },
+      "concurrency": 123,
+      "pendingRequests": 123,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:15:45.125Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 194,
+      "requestsCompleted": 197,
+      "latency": {
+        "min": 4129.4,
+        "max": 7503.2,
+        "median": 5558.9,
+        "p95": 7296.6,
+        "p99": 7488.8
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30.06
+      },
+      "scenarioDuration": {
+        "min": 4134.3,
+        "max": 7644.5,
+        "median": 5542.1,
+        "p95": 7308.1,
+        "p99": 7511.2
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 197
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 4133,
+          "max": 7643,
+          "median": 5539.5,
+          "p95": 7306.8,
+          "p99": 7504.8
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 194
+      },
+      "concurrency": 229,
+      "pendingRequests": 226,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:15:55.124Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 201,
+      "requestsCompleted": 199,
+      "latency": {
+        "min": 7614.1,
+        "max": 10926.8,
+        "median": 9235.4,
+        "p95": 10720.8,
+        "p99": 10905.4
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30.03
+      },
+      "scenarioDuration": {
+        "min": 7617.5,
+        "max": 10976.3,
+        "median": 9236.1,
+        "p95": 10734.2,
+        "p99": 10927.4
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 199
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 7616,
+          "max": 10975,
+          "median": 9235,
+          "p95": 10733,
+          "p99": 10922.4
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 201
+      },
+      "concurrency": 328,
+      "pendingRequests": 327,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:16:05.125Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 204,
+      "requestsCompleted": 203,
+      "latency": {
+        "min": 10907,
+        "max": 14092.8,
+        "median": 12514.5,
+        "p95": 14012.6,
+        "p99": 14081.1
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30
+      },
+      "scenarioDuration": {
+        "min": 10910.6,
+        "max": 14102.3,
+        "median": 12529.1,
+        "p95": 14019.5,
+        "p99": 14088.8
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 203
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 10909,
+          "max": 14096,
+          "median": 12523.5,
+          "p95": 14018.3,
+          "p99": 14087.5
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 204
+      },
+      "concurrency": 424,
+      "pendingRequests": 424,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:16:15.130Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 201,
+      "requestsCompleted": 202,
+      "latency": {
+        "min": 14149.3,
+        "max": 17767.7,
+        "median": 15739.9,
+        "p95": 17256,
+        "p99": 17590.7
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30
+      },
+      "scenarioDuration": {
+        "min": 14153.8,
+        "max": 17776.8,
+        "median": 15754,
+        "p95": 17207.9,
+        "p99": 17605.5
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 202
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 14153,
+          "max": 17776,
+          "median": 15752,
+          "p95": 17204.2,
+          "p99": 17601.4
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 201
+      },
+      "concurrency": 523,
+      "pendingRequests": 522,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:16:25.123Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 197,
+      "requestsCompleted": 196,
+      "latency": {
+        "min": 17437.6,
+        "max": 21423.5,
+        "median": 19458.2,
+        "p95": 20731.8,
+        "p99": 20839.1
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30.03
+      },
+      "scenarioDuration": {
+        "min": 17446.2,
+        "max": 21439.1,
+        "median": 19449.2,
+        "p95": 20746.3,
+        "p99": 20846.7
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 196
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 17440,
+          "max": 21427,
+          "median": 19448,
+          "p95": 20743.6,
+          "p99": 20842.2
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 197
+      },
+      "concurrency": 626,
+      "pendingRequests": 626,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:16:35.120Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 200,
+      "requestsCompleted": 200,
+      "latency": {
+        "min": 20877.5,
+        "max": 24205.3,
+        "median": 22769.6,
+        "p95": 24053.4,
+        "p99": 24140
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30
+      },
+      "scenarioDuration": {
+        "min": 20884.1,
+        "max": 24210.9,
+        "median": 22777.3,
+        "p95": 24059.6,
+        "p99": 24149.4
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 200
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 20881,
+          "max": 24209,
+          "median": 22776,
+          "p95": 24059,
+          "p99": 24146
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 200
+      },
+      "concurrency": 726,
+      "pendingRequests": 726,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:16:45.124Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 200,
+      "requestsCompleted": 200,
+      "latency": {
+        "min": 24181.9,
+        "max": 27993.4,
+        "median": 25951.7,
+        "p95": 27482.5,
+        "p99": 27586.3
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30
+      },
+      "scenarioDuration": {
+        "min": 24189.7,
+        "max": 28003.3,
+        "median": 26011.7,
+        "p95": 27490.1,
+        "p99": 27589.8
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 200
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 24185,
+          "max": 28003,
+          "median": 26009,
+          "p95": 27486,
+          "p99": 27588
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 200
+      },
+      "concurrency": 826,
+      "pendingRequests": 826,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:16:55.123Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 175,
+      "requestsCompleted": 175,
+      "latency": {
+        "min": 27602.8,
+        "max": 32016.2,
+        "median": 30001.1,
+        "p95": 31622.7,
+        "p99": 31939.8
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30
+      },
+      "scenarioDuration": {
+        "min": 27607.1,
+        "max": 32020.2,
+        "median": 30010.5,
+        "p95": 31626.6,
+        "p99": 31944.7
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 175
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 27606,
+          "max": 32019,
+          "median": 30010,
+          "p95": 31625.8,
+          "p99": 31942.3
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 175
+      },
+      "concurrency": 951,
+      "pendingRequests": 951,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:17:05.118Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 200,
+      "requestsCompleted": 201,
+      "latency": {
+        "min": 31766.4,
+        "max": 35034.7,
+        "median": 33280.2,
+        "p95": 34820.3,
+        "p99": 35012.6
+      },
+      "rps": {
+        "count": 300,
+        "mean": 30.03
+      },
+      "scenarioDuration": {
+        "min": 31776.7,
+        "max": 35548.5,
+        "median": 33297,
+        "p95": 34880.3,
+        "p99": 35275.5
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 201
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 31772,
+          "max": 35544,
+          "median": 33295.5,
+          "p95": 34877,
+          "p99": 35274
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 200
+      },
+      "concurrency": 1051,
+      "pendingRequests": 1050,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:17:15.138Z",
+      "scenariosCreated": 301,
+      "scenariosCompleted": 204,
+      "requestsCompleted": 203,
+      "latency": {
+        "min": 35005.4,
+        "max": 38281,
+        "median": 36546.9,
+        "p95": 38130.4,
+        "p99": 38252.8
+      },
+      "rps": {
+        "count": 300,
+        "mean": 29.94
+      },
+      "scenarioDuration": {
+        "min": 35009.1,
+        "max": 38754.8,
+        "median": 36548.5,
+        "p95": 38163.3,
+        "p99": 38420
+      },
+      "scenarioCounts": {
+        "0": 301
+      },
+      "errors": {},
+      "codes": {
+        "200": 203
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 35008,
+          "max": 38753,
+          "median": 36547,
+          "p95": 38161.5,
+          "p99": 38418.9
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 204
+      },
+      "concurrency": 1148,
+      "pendingRequests": 1147,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:17:25.135Z",
+      "scenariosCreated": 300,
+      "scenariosCompleted": 207,
+      "requestsCompleted": 208,
+      "latency": {
+        "min": 38247.7,
+        "max": 41316.2,
+        "median": 39747.7,
+        "p95": 41130,
+        "p99": 41260.7
+      },
+      "rps": {
+        "count": 301,
+        "mean": 30.1
+      },
+      "scenarioDuration": {
+        "min": 38251,
+        "max": 41435.1,
+        "median": 39745.8,
+        "p95": 41167.9,
+        "p99": 41307.9
+      },
+      "scenarioCounts": {
+        "0": 300
+      },
+      "errors": {},
+      "codes": {
+        "200": 208
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 38249,
+          "max": 41429,
+          "median": 39745,
+          "p95": 41165.5,
+          "p99": 41305.9
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 207
+      },
+      "concurrency": 1241,
+      "pendingRequests": 1240,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:17:35.140Z",
+      "scenariosCreated": 0,
+      "scenariosCompleted": 212,
+      "requestsCompleted": 211,
+      "latency": {
+        "min": 41332.1,
+        "max": 44323.1,
+        "median": 42898.9,
+        "p95": 44158.1,
+        "p99": 44283.7
+      },
+      "rps": {
+        "count": 0,
+        "mean": null
+      },
+      "scenarioDuration": {
+        "min": 41342.2,
+        "max": 44337.3,
+        "median": 42902,
+        "p95": 44162.1,
+        "p99": 44288.8
+      },
+      "scenarioCounts": {},
+      "errors": {},
+      "codes": {
+        "200": 211
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 41339,
+          "max": 44331,
+          "median": 42898,
+          "p95": 44159.8,
+          "p99": 44286.9
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 212
+      },
+      "concurrency": 1029,
+      "pendingRequests": 1029,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:17:45.135Z",
+      "scenariosCreated": 0,
+      "scenariosCompleted": 206,
+      "requestsCompleted": 206,
+      "latency": {
+        "min": 44287.3,
+        "max": 47389.8,
+        "median": 45961.5,
+        "p95": 47280.5,
+        "p99": 47381.1
+      },
+      "rps": {
+        "count": 0,
+        "mean": null
+      },
+      "scenarioDuration": {
+        "min": 44293.1,
+        "max": 47416.5,
+        "median": 46003.1,
+        "p95": 47288.3,
+        "p99": 47385.1
+      },
+      "scenarioCounts": {},
+      "errors": {},
+      "codes": {
+        "200": 206
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 44291,
+          "max": 47414,
+          "median": 45999,
+          "p95": 47286.8,
+          "p99": 47383.2
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 206
+      },
+      "concurrency": 823,
+      "pendingRequests": 823,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:17:55.130Z",
+      "scenariosCreated": 0,
+      "scenariosCompleted": 197,
+      "requestsCompleted": 197,
+      "latency": {
+        "min": 47458.7,
+        "max": 50803.6,
+        "median": 49170.3,
+        "p95": 50639.1,
+        "p99": 50786.6
+      },
+      "rps": {
+        "count": 0,
+        "mean": null
+      },
+      "scenarioDuration": {
+        "min": 47466.5,
+        "max": 50816.7,
+        "median": 49208.7,
+        "p95": 50645.8,
+        "p99": 50793.6
+      },
+      "scenarioCounts": {},
+      "errors": {},
+      "codes": {
+        "200": 197
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 47465,
+          "max": 50807,
+          "median": 49207,
+          "p95": 50642.2,
+          "p99": 50788.6
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 197
+      },
+      "concurrency": 626,
+      "pendingRequests": 626,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:18:05.137Z",
+      "scenariosCreated": 0,
+      "scenariosCompleted": 211,
+      "requestsCompleted": 211,
+      "latency": {
+        "min": 50753.4,
+        "max": 53886.9,
+        "median": 52396.9,
+        "p95": 53730.7,
+        "p99": 53873.6
+      },
+      "rps": {
+        "count": 0,
+        "mean": null
+      },
+      "scenarioDuration": {
+        "min": 50760.2,
+        "max": 53903,
+        "median": 52406.9,
+        "p95": 53736.2,
+        "p99": 53890.1
+      },
+      "scenarioCounts": {},
+      "errors": {},
+      "codes": {
+        "200": 211
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 50758,
+          "max": 53901,
+          "median": 52405,
+          "p95": 53733.7,
+          "p99": 53888.5
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 211
+      },
+      "concurrency": 415,
+      "pendingRequests": 415,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:18:15.148Z",
+      "scenariosCreated": 0,
+      "scenariosCompleted": 205,
+      "requestsCompleted": 205,
+      "latency": {
+        "min": 53816.2,
+        "max": 57003.9,
+        "median": 55544.9,
+        "p95": 56870.6,
+        "p99": 56968.2
+      },
+      "rps": {
+        "count": 0,
+        "mean": null
+      },
+      "scenarioDuration": {
+        "min": 53819.2,
+        "max": 57243.7,
+        "median": 55548.4,
+        "p95": 56890.4,
+        "p99": 56994.4
+      },
+      "scenarioCounts": {},
+      "errors": {},
+      "codes": {
+        "200": 205
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 53818,
+          "max": 57241,
+          "median": 55546,
+          "p95": 56888,
+          "p99": 56992.1
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 205
+      },
+      "concurrency": 210,
+      "pendingRequests": 210,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:18:25.130Z",
+      "scenariosCreated": 0,
+      "scenariosCompleted": 176,
+      "requestsCompleted": 176,
+      "latency": {
+        "min": 57018.5,
+        "max": 61089.9,
+        "median": 59192.4,
+        "p95": 60961.2,
+        "p99": 61079.6
+      },
+      "rps": {
+        "count": 0,
+        "mean": null
+      },
+      "scenarioDuration": {
+        "min": 57027.4,
+        "max": 61093.4,
+        "median": 59200.5,
+        "p95": 60968.1,
+        "p99": 61083.5
+      },
+      "scenarioCounts": {},
+      "errors": {},
+      "codes": {
+        "200": 176
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 57023,
+          "max": 61092,
+          "median": 59196,
+          "p95": 60963.3,
+          "p99": 61082
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 176
+      },
+      "concurrency": 34,
+      "pendingRequests": 34,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2019-10-18T09:18:26.765Z",
+      "scenariosCreated": 0,
+      "scenariosCompleted": 34,
+      "requestsCompleted": 34,
+      "latency": {
+        "min": 61005,
+        "max": 61630.8,
+        "median": 61327.9,
+        "p95": 61605.6,
+        "p99": 61630.8
+      },
+      "rps": {
+        "count": 0,
+        "mean": null
+      },
+      "scenarioDuration": {
+        "min": 61009.6,
+        "max": 61635.9,
+        "median": 61334.3,
+        "p95": 61614.8,
+        "p99": 61635.9
+      },
+      "scenarioCounts": {},
+      "errors": {},
+      "codes": {
+        "200": 34
+      },
+      "matches": 0,
+      "customStats": {
+        "/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": {
+          "min": 61007,
+          "max": 61634,
+          "median": 61333.5,
+          "p95": 61609,
+          "p99": 61634
+        }
+      },
+      "counters": {
+        "code 200 on /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000": 34
+      },
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    }
+  ]
+};
+  </script>
+
+  <style>
+      h1 {
+        line-height: 200%;
+      }
+
+      body {
+          background-color: #fcfcfc;
+      }
+
+      .container {
+          width: 100%;
+          min-width: 960px;
+      }
+  </style>
+
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="row" id="header">
+  <div class="col-lg-4 col-lg-offset-4">
+    <pre style="font-size: 5pt; background-color: #fcfcfc; border: none;">
+            _   _ _ _                                                _
+  __ _ _ __| |_(_) | | ___ _ __ _   _      _ __ ___ _ __   ___  _ __| |_
+ / _` | '__| __| | | |/ _ \ '__| | | |    | '__/ _ \ '_ \ / _ \| '__| __|
+| (_| | |  | |_| | | |  __/ |  | |_| |    | | |  __/ |_) | (_) | |  | |_
+ \__,_|_|   \__|_|_|_|\___|_|   \__, |    |_|  \___| .__/ \___/|_|   \__|
+                                |___/              |_|
+
+    </pre>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="text-center" id="page-title">Test run on <span id="timestamp">date</span></h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-3">
+    <p><strong>Summary</strong></p>
+    <table class="table table-bordered table-hover table-condensed">
+      <tbody>
+        <tr>
+          <td>Test duration</td>
+          <td><span id="testDuration">0</span> sec</td>
+        </tr>
+        <tr>
+          <td>Scenarios created</td>
+          <td><span id="scenariosCreated">0</span></td>
+        </tr>
+
+        <tr>
+          <td>Scenarios completed</td>
+          <td><span id="scenariosCompleted">0</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-lg-5" id="scenarioCountsContainer">
+    <div>
+      <strong>Scenario counts:</strong>
+
+      <p></p>
+
+      <table class="table table-bordered table-hover table-condensed" id="scenarioCounts">
+      </table>
+    </div>
+  </div>
+
+  <div class="col-lg-1">
+    <div id="codesContainer">
+      <strong>Codes</strong>
+
+      <p></p>
+
+      <table class="table table-bordered table-hover table-condensed" id="codes">
+      </table>
+    </div>
+  </div>
+
+  <div class="col-lg-3">
+    <div id="errorsContainer">
+      <strong>Errors</strong>
+
+      <p></p>
+
+      <table class="table table-bordered table-hover table-condensed" id="errors">
+      </table>
+    </div>
+  </div>
+</div> <!-- /.row -->
+
+<div class="row">
+  <div class="text-center col-lg-12">
+    <h2>Charts</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="latency-histogram text-center col-lg-12"></div>
+</div>
+
+<div class="row">
+  <div class="latency text-center col-lg-12"></div>
+</div>
+
+<div class="latency-legend"></div>
+
+<div class="row">
+
+</div>
+
+<div class="row">
+  <div class="concurrency text-center col-lg-12"></div>
+</div>
+
+<div class="row">
+  <div class="rps-mean text-center col-lg-12"></div>
+</div>
+<div class="row">
+  <div class="rps-count text-center col-lg-12"></div>
+</div>
+
+<div class="row">
+  <div class="codes-line text-center col-lg-12"></div>
+</div>
+<div class="row">
+  <div class="errors-line text-center col-lg-12"></div>
+</div>
+
+
+  
+    
+    <div class="row">
+      <div class="id_5634 text-center col-lg-12"></div>
+      <script>
+      var histogramData = _.map(Report.aggregate.customStats['/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000'], function(v, k) { return {bin: k, value: v} });
+      MG.data_graphic({
+        chart_type: 'bar',
+        x_label: 'Percentile',
+        y_label: '(ms)',
+        animate_on_load: true,
+        title: '/api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000 distribution',
+        description: 'Distribution of /api/Challenge?Status=started&Status=finished&PageNumber=1000&PageSize=1000',
+        target: '.id_5634',
+        data: histogramData,
+        x_accessor: 'bin',
+        y_accessor: 'value',
+        binned: true,
+        height: 250,
+        interpolate: 'monotone',
+        padding_percentage: 0,
+        bar_orientation: 'vertical',
+        width: 450
+      });
+      </script>
+    </div>
+  
+
+
+</div>
+
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2">
+    <h3 class="text-center">Raw report data</h3>
+    <p>This is the raw JSON stats output that the report was generated from.</p>
+    <div id="editor">
+    </div>
+  </div>
+</div>
+
+<script>
+var editor = ace.edit("editor");
+editor.getSession().setMode("ace/mode/javascript");
+editor.setValue(JSON.stringify(Report, null, 2));
+editor.gotoLine(1);editor.setHighlightActiveLine(false);
+
+var l = _;
+
+$('#timestamp').html(moment(Report.aggregate.timestamp).format('DD MMM YYYY HH:mm:SS'));
+$('#testDuration').html(l.size(Report.intermediate) * 10);
+$('#scenariosCompleted').html(Report.aggregate.scenariosCompleted);
+$('#scenariosCreated').html(Report.aggregate.scenariosCreated);
+
+var markers = [];
+if(l.size(Report.phases) > 0) {
+  markers = l.foldl(Report.phases, function(acc, phase, index) {
+    var label = phase.name || 'Phase ' + (index + 1);
+    var timestamp = (index === 0) ? 0 : Report.phases[index - 1].duration + acc[index - 1].timestamp;
+
+    acc.push({
+      timestamp: timestamp,
+      label: label
+    });
+
+    return acc;
+  }, []);
+}
+
+if (l.size(Report.aggregate.scenarioCounts) > 0) {
+  l.each(Report.aggregate.scenarioCounts, function(count, name) {
+    var $tdName = $('<td>' + name + '</td>');
+    var percentage = Math.round(count / Report.aggregate.scenariosCreated * 100 * 1000) / 1000;
+    var $tdCount = $('<td>' + count + ' (' + percentage + '%)' + '</td>');
+    var $el = $('<tr></tr>')
+      .append($tdName)
+      .append($tdCount)
+      .appendTo($('#scenarioCounts'));
+  });
+} else {
+  $('#scenarioCountsContainer').hide();
+}
+
+if (l.size(Report.aggregate.codes) > 0) {
+  l.each(Report.aggregate.codes, function(count, code) {
+    var anchor = '';
+    if (code >= 100 && code < 200) {
+      anchor = '#1xx_Informational';
+    } else if (code >= 200 && code < 300) {
+      anchor = '#2xx_Success';
+    } else if (code >= 300 && code < 400) {
+      anchor = '#3xx_Redirection';
+    } else if (code >= 400 && code < 500) {
+      anchor = '#4xx_Client_Error';
+    } else if (code >= 500 && code < 600) {
+      anchor = '#5xx_Server_Error';
+    }
+
+    var $a = $('<a>' + code + '</a>').attr('href', 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes' + anchor);
+    var $td = $('<td></td>').append($a);
+    var $el = $('<tr></tr>')
+      .append($td)
+      .append($('<td>' + count + '</td>'))
+      .appendTo($('#codes'));
+  });
+} else {
+  $('#codesContainer').hide();
+}
+
+if (l.size(Report.aggregate.errors) > 0) {
+  l.each(Report.aggregate.errors, function(count, code) {
+    var $el = $('<tr></tr>')
+      .append($('<td>' + code + '</td>'))
+      .append($('<td>' + count + '</td>'))
+      .appendTo($('#errors'));
+  });
+} else {
+  $('#errorsContainer > p').html('&#10004; Test completed without network or OS errors.');
+}
+
+var histogramData = l.map(Report.aggregate.latency, function(v, k) { return {bin: k, value: v} });
+
+MG.data_graphic({
+  chart_type: 'bar',
+  x_label: 'Percentile',
+  y_label: '(ms)',
+  animate_on_load: true,
+  title: 'Overall Latency Distribution',
+  description: 'Distribution of all observed response latencies',
+  target: '.latency-histogram',
+  data: histogramData,
+  x_accessor: 'bin',
+  y_accessor: 'value',
+  binned: true,
+  height: 250,
+  interpolate: 'monotone',
+  padding_percentage: 0,
+  bar_orientation: 'vertical',
+  width: 450
+});
+
+var chartData = l.map(
+  window.Report.intermediate,
+  function(o,i) {
+    return {
+      timestamp: i*10+10,
+
+      rpsMean: o.rps.mean,
+      rpsCount: o.rps.count,
+      concurrency: o.concurrency,
+      latencyMax: o.latency.max,
+      latencyp99: o.latency.p99,
+      latencyp95: o.latency.p95,
+      latencyMedian: o.latency.median,
+      latencyMin: o.latency.min
+    }
+  });
+
+//
+// Response codes
+//
+
+if (l.size(Report.aggregate.codes) > 0) {
+  var codesData = l.foldl(Report.intermediate, function(acc, o, i) {
+    var res = {};
+    res.timestamp = i*10+10;
+    l.each(o.codes, function(count, code) {
+      res[code] = count;
+    });
+    acc.push(res);
+    return acc;
+  }, []);
+  var uniqueCodes = l.foldl(Report.intermediate, function(acc, o) {
+    l.each(o.codes, function(count, code) {
+      if (l.indexOf(acc, code) === -1) {
+        acc.push(code);
+      }
+    });
+    return acc;
+  }, []);
+
+  MG.data_graphic({
+    x_label: 'Time',
+    y_label: 'Count',
+    title: 'HTTP codes',
+    description: 'Occurence of HTTP response codes',
+    target: '.codes-line',
+    data: codesData,
+    x_accessor: 'timestamp',
+    y_accessor: uniqueCodes,
+    legend: uniqueCodes,
+    right: 50,
+    chart_type: 'line',
+    area: false,
+    markers: markers,
+    width: 900
+  });
+}
+
+//
+// Errors
+//
+
+if (l.size(Report.aggregate.errors) > 0) {
+  var errorData = l.foldl(Report.intermediate, function(acc, o, i) {
+    var res = {};
+    res.timestamp = i*10+10;
+    l.each(o.errors, function(count, name) {
+      res[name] = count;
+    });
+    acc.push(res);
+    return acc;
+  }, []);
+  var uniqueErrors = l.foldl(Report.intermediate, function(acc, o) {
+    l.each(o.errors, function(count, name) {
+      if (l.indexOf(acc, name) === -1) {
+        acc.push(name);
+      }
+    });
+    return acc;
+  }, []);
+
+  MG.data_graphic({
+    title: 'Error Codes',
+    description: 'Occurence of error codes',
+    target: '.errors-line',
+    data: errorData,
+    x_accessor: 'timestamp',
+    y_accessor: uniqueErrors,
+    chart_type: 'line',
+    area: false,
+    markers: markers
+  });
+
+}
+
+//
+// Latency
+//
+MG.data_graphic({
+  chart_type: 'line',
+  x_label: 'Time',
+  y_label: '(ms)',
+  animate_on_load: true,
+  area: false,
+  title: "Latency At Intervals",
+  description: "Latency values at different points during the test run",
+  data: chartData,
+  target: '.latency',
+  width: 900,
+  x_accessor: 'timestamp',
+  y_accessor: ['latencyMin', 'latencyMedian', 'latencyp95', 'latencyMax'],
+  legend: ['min', 'p50', 'p95', 'max'],
+  //legend_target: '.latency-legend',
+  right: 50,
+  interpolate: 'monotone',
+  mouseover: function(d, i) {
+  },
+  markers: markers
+        });
+
+            MG.data_graphic({
+            animate_on_load: true,
+            area: false,
+            y_label: 'Count',
+            x_label: 'Time',
+            title: 'Concurrent users',
+            description: 'Concurrent users',
+            data: chartData,
+            target: '.concurrency',
+            x_accessor: 'timestamp',
+            y_accessor: ['concurrency'],
+            interpolate: 'monotone',
+            markers: markers,
+            width: 900
+            });
+
+MG.data_graphic({
+  animate_on_load: true,
+  area: false,
+  y_label: 'Count',
+  x_label: 'Time',
+  title: 'Mean RPS',
+  description: 'Mean requests per second',
+  data: chartData,
+  target: '.rps-mean',
+  x_accessor: 'timestamp',
+  y_accessor: ['rpsMean'],
+  interpolate: 'monotone',
+  markers: markers,
+  width: 900
+});
+
+MG.data_graphic({
+  animate_on_load: true,
+  area: false,
+  y_label: 'Count',
+  x_label: 'Time',
+  title: 'RPS Count',
+  description: 'Count of requests per second',
+  data: chartData,
+  target: '.rps-count',
+  x_accessor: 'timestamp',
+  y_accessor: ['rpsCount'],
+  interpolate: 'monotone',
+  markers: markers,
+  width: 900
+});
+</script>
+<div id="footer">
+  <footer>This report was created with <a href="https://artillery.io">Artillery</a> - free open-source load-testing for HTTP and WebSockets</footer>
+</div>
+</body>
+</html>

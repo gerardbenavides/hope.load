@@ -1,0 +1,38 @@
+##CONFIG SECTION##
+
+config:
+  tls: 
+    rejectUnauthorized: false # DISABLE CERTIFICATE VALIDATION, FOR STAGE AND DEV TESTING ONLY
+  http: 
+    pool: 10 # All HTTP requests from all virtual users will be sent over the same 10 connections, To open and re-use a fixed number of connections
+  ensure:
+    maxErrorRate: 5
+  plugins: # Installed plugins
+    expect: {}
+    fuzzer: {}
+    metrics-by-endpoint: {}
+
+  target: 'http://api.gonna.netzon.se'
+  phases:
+    - duration: 60 #Duration of test will be running
+      arrivalRate: 20 #Arrival of new virtual user per second (average virtual users)
+      name: "Medium Load"
+
+    # - pause: 10 #Pauses for 10 seconds, no virtual users created in this duration
+
+    # - duration: 10
+    #   arrivalRate: 5
+    #   name: "Medium load"
+
+  #SETUP VARIABLES HERE
+  variables:
+    max_items:
+      - "1000"
+    challengeId:
+      - "fcb23440-9c28-4010-9448-495a42370f9b"
+  defaults:
+    headers:
+      Authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmltYXJ5c2lkIjoiZGYxNjA3NmEtOWUyNi00MWFlLThhOTAtNWZjOTViMzdmM2Q0Iiwicm9sZSI6IkFwcFVzZXIiLCJuYmYiOjE1NzQzOTA2MjcsImV4cCI6MTU3OTY0NjYyNywiaWF0IjoxNTc0MzkwNjI3fQ.gMFWvk1SlyuQGzlFwY6q_Z1dsAJ8cgNu46-mRfn0AF8'
+      X-OAuth2-Authorization: 'EAAXzxfcO0ggBACZA3rkZBHqcwBZBariPh1h1ZCsdQm48rFG9V3XhpIWFCsuo4Vq5yPJy1AqVnn57WZCgpwSjhKjS0rKQAfe2r0i0WohaPv8WNDrHN9vK3GIQs3yTrSpCbWoECyiQRSiIZA58wEqS9RvyIVVDjzVO3FABZCeBk5ZCUDs9TlzMM7TF'
+
+## END OF CONFIG

@@ -1,0 +1,16 @@
+
+scenarios:
+  - flow:
+    - loop:
+      - log: "-----------------------------------------Generated new virtual user-----------------------------------------"
+      - get: #GET CHALLENGE CONTRIBUTORS
+          url: "/api/Challenge/{{challengeId}}/contributors?PageNumber={{max_items}}&PageSize={{max_items}}"
+          capture:
+            - json: "$.status"
+              as: status
+          expect:
+            - statusCode: 200
+            - contentType: json
+            - hasProperty: data ##[0].status
+      - log: "-----------------------------------------------Ended a scenario-----------------------------------------------"
+      count: 1

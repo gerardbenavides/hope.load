@@ -1,0 +1,39 @@
+##CONFIG SECTION##
+
+config:
+  tls: 
+    rejectUnauthorized: false # DISABLE CERTIFICATE VALIDATION, FOR STAGE AND DEV TESTING ONLY
+  target: 'http:/'
+  http: 
+      pool: 10 # All HTTP requests from all virtual users will be sent over the same 10 connections, To open and re-use a fixed number of connections
+  ensure:
+    maxErrorRate: 1
+  plugins:
+    expect: {}
+    fuzzer: {}
+    metrics-by-endpoint: {}
+
+  phases:
+    - duration: 10 #Duration of test will be running
+      arrivalRate: 1 #Arrival of new virtual user per second (average virtual users)
+      name: "Normal Load"
+
+
+    # - duration: 10
+    #   arrivalRate: 5
+    #   name: "medium load"
+
+    # - duration: 10
+    #   arrivalRate: 5
+    #   rampTo: 50
+    #   name: "ramp up"
+
+  #SETUP VARIABLES HERE
+  variables:
+    max_items:
+      - "1000"
+  defaults:
+    headers:
+      Authorization: 'bearer AQC-sTig34KMhqOxGtNoaE7N8O4kFdUskhauyzJ9cy1kp8kFHz0BbN791Vuns1cS7BEKjB7HsaDZmxRCchuWk4bH1xYwH-VShvMRl3jIlI64YjYCySeDv5P0TwBG-21VaVzq79OlrqOY_5257ABpL_8-dwTzFJyhwGrkcQj0FPpFMY8gI_Cbv-vmpbevI79mO6S4-X9MOD6KieLwxgmPFNX1GorbVR9xJPNgeMQYRWADXdkoreaAv0yQ1u4Bz5yp5T7bub88KA9oQ8ig1wCn-0eGSyOvN6p6kNBumyK2cP2l_JEAvRMT0AJuXazUOvnMWycCP-c0hXtyMvomkKHRF4f2'
+
+## END OF CONFIG

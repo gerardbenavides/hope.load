@@ -1,0 +1,33 @@
+##CONFIG SECTION##
+
+config:
+  tls: 
+    rejectUnauthorized: false # DISABLE CERTIFICATE VALIDATION, FOR STAGE AND DEV TESTING ONLY
+  http: 
+    timeout: 10
+    pool: 10 # All HTTP requests from all virtual users will be sent over the same 10 connections, To open and re-use a fixed number of connections
+  ensure:
+    maxErrorRate: 5
+    # p95: 900
+  plugins: # Installed plugins
+    expect: {}
+    fuzzer: {}
+    metrics-by-endpoint: {}
+
+  target: 'http://staging.api.gonna.netzon.se'
+  phases:
+    - duration: 1 #30 #Duration of test will be running
+      arrivalRate: 5 #Arrival of new virtual user per second (average virtual users)
+      name: "Normal Load"
+
+    # - pause: 10 #Pauses for 10 seconds, no virtual users created in this duration
+
+  #SETUP VARIABLES HERE
+  variables: 
+    max_items: 
+      - "1000"
+  defaults:
+    headers:
+      Authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmltYXJ5c2lkIjoiYjRmYTlhN2ItMmVlZi00ZDYwLWFhNDItZWM3ZTc0M2FjMjg4Iiwicm9sZSI6IkFwcFVzZXIiLCJuYmYiOjE1NzE3MjA4NzMsImV4cCI6MTU3Njk3Njg3MywiaWF0IjoxNTcxNzIwODczfQ.K18MLxZmQEA1fnakKszvuiOJUymbmm-gHSDzvKw2jSU'
+
+## END OF CONFIG

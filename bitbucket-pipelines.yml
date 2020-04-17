@@ -1,0 +1,671 @@
+options:
+  docker: true
+pipelines:
+  branches:
+    master:
+      - parallel:
+        - step:
+            image:
+              name: us.gcr.io/gonna-245008/ansible-gcp:latest
+              username: _json_key
+              password: '$GCR_JSON_KEY'
+            name: (Dev) Deploy API Instance
+            deployment: test-api
+            artifacts:
+              - report.txt
+            script:
+              # Setup image information.
+              - export BUILD_VERSION=1.0
+              - export GCLOUD_PROJECT=gonna-245008
+              - export GCLOUD_CLUSTER=gonna-dev
+              - export GCLOUD_ZONE=europe-north1-a 
+              - export GCLOUD_API_KEY_FILE=devops/config/gcp/gonna-api-key.json
+
+              - export COMPONENT_API=$BITBUCKET_REPO_SLUG-api
+              - export IMAGE_NAME_API=us.gcr.io/$GCLOUD_PROJECT/$COMPONENT_API:$BITBUCKET_BUILD_NUMBER
+
+              # Setup google cloud access.
+              - gcloud auth activate-service-account --key-file $GCLOUD_API_KEY_FILE
+              - gcloud config set project $GCLOUD_PROJECT
+              - gcloud container clusters get-credentials $GCLOUD_CLUSTER --zone=$GCLOUD_ZONE --project $GCLOUD_PROJECT
+              - gcloud auth configure-docker --quiet
+
+              # Build image.
+              - (cd src/api && docker build --rm -f "Development.Dockerfile" -t $IMAGE_NAME_API .)
+              # Publish image.
+              - docker push $IMAGE_NAME_API
+              # Deploy image.
+              - kubectl set image deployment $COMPONENT_API $COMPONENT_API=$IMAGE_NAME_API --record --namespace=$K8S_NAMESPACE
+        - step:
+            image:
+              name: us.gcr.io/gonna-245008/ansible-gcp:latest
+              username: _json_key
+              password: '$GCR_JSON_KEY'
+            name: (Dev) Deploy Client Instances
+            deployment: test
+            artifacts:
+              - report.txt
+            script:
+              - export BUILD_ENV=develop
+              - export ENVIRONMENT=production
+
+              - export BASE_ADMIN_URL=$DEV_BASE_ADMIN_URL
+              - export BASE_API_URL=$DEV_BASE_API_URL
+
+              - export BUILD_VERSION=1.0
+              - export GCLOUD_PROJECT=gonna-245008
+              - export GCLOUD_CLUSTER=gonna-dev
+              - export GCLOUD_ZONE=europe-north1-a 
+              - export GCLOUD_API_KEY_FILE=devops/config/gcp/gonna-api-key.json
+
+              - export COMPONENT_ADMIN=$BITBUCKET_REPO_SLUG-admin
+              - export IMAGE_NAME_ADMIN=us.gcr.io/$GCLOUD_PROJECT/$COMPONENT_ADMIN:$BITBUCKET_BUILD_NUMBER
+
+              # Setup google cloud access.
+              - gcloud auth activate-service-account --key-file $GCLOUD_API_KEY_FILE
+              - gcloud config set project $GCLOUD_PROJECT
+              - gcloud container clusters get-credentials $GCLOUD_CLUSTER --zone=$GCLOUD_ZONE --project $GCLOUD_PROJECT
+              - gcloud auth configure-docker --quiet
+
+              # Build mobile.
+              - (cd devops/ansible/build && ansible-playbook -i hosts -v build_mobile.yml)
+
+              # Prepare web-admin environment variables.
+              - (cd devops/ansible/prepare && ansible-playbook -i hosts -v prepare_web_admin.yml)
+
+              # Build image.
+              - echo $IMAGE_NAME_ADMIN
+              - docker build src/web-admin -t $IMAGE_NAME_ADMIN
+              # Publish image.
+              - docker push $IMAGE_NAME_ADMIN
+              # Deploy image.
+              - kubectl set image deployment $COMPONENT_ADMIN $COMPONENT_ADMIN=$IMAGE_NAME_ADMIN --record --namespace=$K8S_NAMESPACE        
+      - step:
+          name: (Staging) Start Deployment
+          trigger: manual
+          script:
+            - echo "Starting deployment."
+      - parallel:
+        - step: 
+            image:
+              name: us.gcr.io/gonna-245008/ansible-gcp:latest
+              username: _json_key
+              password: '$GCR_JSON_KEY'
+            name: (Staging) Deploy API Instance
+            deployment: staging-api
+            artifacts:
+              - report.txt
+            script:
+              - export BUILD_ENV=staging
+
+              # Setup image information.
+              - export BUILD_VERSION=1.0
+              - export GCLOUD_PROJECT=gonna-245008
+              - export GCLOUD_CLUSTER=gonna-staging
+              - export GCLOUD_ZONE=europe-north1-a 
+              - export GCLOUD_API_KEY_FILE=devops/config/gcp/gonna-api-key.json
+
+              - export COMPONENT_API=$BITBUCKET_REPO_SLUG-api-$BUILD_ENV
+              - export IMAGE_NAME_API=us.gcr.io/$GCLOUD_PROJECT/$COMPONENT_API:$BITBUCKET_BUILD_NUMBER
+
+              # Setup google cloud access.
+              - gcloud auth activate-service-account --key-file $GCLOUD_API_KEY_FILE
+              - gcloud config set project $GCLOUD_PROJECT
+              - gcloud container clusters get-credentials $GCLOUD_CLUSTER --zone=$GCLOUD_ZONE --project $GCLOUD_PROJECT
+              - gcloud auth configure-docker --quiet
+
+              # Build image.
+              - (cd src/api && docker build --rm -f "Staging.Dockerfile" -t $IMAGE_NAME_API .)
+              # Publish image.
+              - docker push $IMAGE_NAME_API
+              # Deploy image.
+              - kubectl set image deployment $COMPONENT_API $COMPONENT_API=$IMAGE_NAME_API --record --namespace=$K8S_NAMESPACE
+        - step: 
+            image:
+              name: us.gcr.io/gonna-245008/ansible-gcp:latest
+              username: _json_key
+              password: '$GCR_JSON_KEY'
+            name: (Staging) Deploy Client Instances
+            deployment: staging
+            artifacts:
+              - report.txt
+            script:
+              - export BUILD_ENV=staging
+              - export ENVIRONMENT=production
+
+              - export BASE_ADMIN_URL=$STAGING_BASE_ADMIN_URL
+              - export BASE_API_URL=$STAGING_BASE_API_URL
+
+              - export BUILD_VERSION=1.0
+              - export GCLOUD_PROJECT=gonna-245008
+              - export GCLOUD_CLUSTER=gonna-staging
+              - export GCLOUD_ZONE=europe-north1-a 
+              - export GCLOUD_API_KEY_FILE=devops/config/gcp/gonna-api-key.json
+
+              - export COMPONENT_API=$BITBUCKET_REPO_SLUG-api-$BUILD_ENV
+              - export COMPONENT_ADMIN=$BITBUCKET_REPO_SLUG-admin-$BUILD_ENV
+
+              - export IMAGE_NAME_API=us.gcr.io/$GCLOUD_PROJECT/$COMPONENT_API:$BITBUCKET_BUILD_NUMBER
+              - export IMAGE_NAME_ADMIN=us.gcr.io/$GCLOUD_PROJECT/$COMPONENT_ADMIN:$BITBUCKET_BUILD_NUMBER
+
+              # Setup google cloud access.
+              - gcloud auth activate-service-account --key-file $GCLOUD_API_KEY_FILE
+              - gcloud config set project $GCLOUD_PROJECT
+              - gcloud container clusters get-credentials $GCLOUD_CLUSTER --zone=$GCLOUD_ZONE --project $GCLOUD_PROJECT
+              - gcloud auth configure-docker --quiet
+
+              # Build mobile
+              - (cd devops/ansible/build && ansible-playbook -i hosts -v build_mobile.yml)
+
+              # Prepare web-admin environment variables
+              - (cd devops/ansible/prepare && ansible-playbook -i hosts -v prepare_web_admin.yml)
+
+              # Build image.
+              - echo $IMAGE_NAME_ADMIN
+              - docker build src/web-admin -t $IMAGE_NAME_ADMIN
+              # Publish image.
+              - docker push $IMAGE_NAME_ADMIN
+
+              # Deploy image.
+              - kubectl set image deployment $COMPONENT_ADMIN $COMPONENT_ADMIN=$IMAGE_NAME_ADMIN --record --namespace=$K8S_NAMESPACE
+      - step:
+          name: (Production) Start Deployment
+          trigger: manual
+          script:
+            - echo "Starting deployment."
+      - parallel:
+        - step: 
+            image:
+              name: us.gcr.io/gonna-245008/ansible-gcp:latest
+              username: _json_key
+              password: '$GCR_JSON_KEY'
+            name: (Production) Deploy API Instance
+            deployment: production-api
+            artifacts:
+              - report.txt
+            script:
+              - export BUILD_ENV=production
+
+              # Setup image information.
+              - export BUILD_VERSION=1.0
+              - export GCLOUD_PROJECT=gonna-245008
+              - export GCLOUD_CLUSTER=gonna-production
+              - export GCLOUD_ZONE=europe-north1-a 
+              - export GCLOUD_API_KEY_FILE=devops/config/gcp/gonna-api-key.json
+
+              - export COMPONENT_API=$BITBUCKET_REPO_SLUG-api-$BUILD_ENV
+              - export IMAGE_NAME_API=us.gcr.io/$GCLOUD_PROJECT/$COMPONENT_API:$BITBUCKET_BUILD_NUMBER
+
+              # Setup google cloud access.
+              - gcloud auth activate-service-account --key-file $GCLOUD_API_KEY_FILE
+              - gcloud config set project $GCLOUD_PROJECT
+              - gcloud container clusters get-credentials $GCLOUD_CLUSTER --zone=$GCLOUD_ZONE --project $GCLOUD_PROJECT
+              - gcloud auth configure-docker --quiet
+
+              # Build image.
+              - (cd src/api && docker build --rm -f "Production.Dockerfile" -t $IMAGE_NAME_API .)
+              # Publish image.
+              - docker push $IMAGE_NAME_API
+              # Deploy image.
+              - kubectl set image deployment $COMPONENT_API $COMPONENT_API=$IMAGE_NAME_API --record --namespace=$K8S_NAMESPACE
+        - step: 
+            image:
+              name: us.gcr.io/gonna-245008/ansible-gcp:latest
+              username: _json_key
+              password: '$GCR_JSON_KEY'
+            name: (Production) Deploy Client Instances
+            deployment: production
+            artifacts:
+              - report.txt
+            script:
+              - export BUILD_ENV=production
+              - export ENVIRONMENT=production
+
+              - export BASE_ADMIN_URL=$PROD_BASE_ADMIN_URL
+              - export BASE_API_URL=$PROD_BASE_API_URL
+
+              - export BUILD_VERSION=1.0
+              - export GCLOUD_PROJECT=gonna-245008
+              - export GCLOUD_CLUSTER=gonna-production
+              - export GCLOUD_ZONE=europe-north1-a 
+              - export GCLOUD_API_KEY_FILE=devops/config/gcp/gonna-api-key.json
+
+              - export COMPONENT_API=$BITBUCKET_REPO_SLUG-api-$BUILD_ENV
+              - export COMPONENT_ADMIN=$BITBUCKET_REPO_SLUG-admin-$BUILD_ENV
+
+              - export IMAGE_NAME_API=us.gcr.io/$GCLOUD_PROJECT/$COMPONENT_API:$BITBUCKET_BUILD_NUMBER
+              - export IMAGE_NAME_ADMIN=us.gcr.io/$GCLOUD_PROJECT/$COMPONENT_ADMIN:$BITBUCKET_BUILD_NUMBER
+
+              # Setup google cloud access.
+              - gcloud auth activate-service-account --key-file $GCLOUD_API_KEY_FILE
+              - gcloud config set project $GCLOUD_PROJECT
+              - gcloud container clusters get-credentials $GCLOUD_CLUSTER --zone=$GCLOUD_ZONE --project $GCLOUD_PROJECT
+              - gcloud auth configure-docker --quiet
+
+              # Build mobile
+              - (cd devops/ansible/build && ansible-playbook -i hosts -v build_mobile.yml)
+
+              # Prepare web-admin environment variables
+              - (cd devops/ansible/prepare && ansible-playbook -i hosts -v prepare_web_admin.yml)
+
+              # Build image.
+              - echo $IMAGE_NAME_ADMIN
+              - docker build src/web-admin -t $IMAGE_NAME_ADMIN
+              # Publish image.
+              - docker push $IMAGE_NAME_ADMIN
+
+              # Deploy image.
+              - kubectl set image deployment $COMPONENT_ADMIN $COMPONENT_ADMIN=$IMAGE_NAME_ADMIN --record --namespace=$K8S_NAMESPACE
+      - step:
+          name: (Production) RUN load test scripts
+          artifacts:
+            - tests/load/.output/**
+          image: node
+          caches:
+            - node
+          script:
+            - echo Install dependencies
+            - npm install -g artillery
+            - npm install -g artillery-plugin-expect
+            - npm install -g artillery-plugin-fuzzer
+            - npm install -g artillery-plugin-metrics-by-endpoint
+
+            ############ M E D I U M  C O N F I G ############
+            - > 
+              (
+                cd tests/load && 
+                mkdir .output &&
+                cd .output && 
+                artillery run ../prod/getChallenges.yml --config ../prod/config/loadMedium.yml --output r_getChallengesM.json | tee -a r_getChallengesM.txt &&
+                artillery report r_getChallengesM.json
+              )
+            - echo Executed GET Challenges script
+            - >   
+              (
+                cd tests/load && 
+                cd .output && 
+                artillery run ../prod/getChlContr.yml --config ../prod/config/loadMedium.yml --output r_getChlContrM.json | tee -a r_getChlContrM.txt
+                artillery report r_getChlContrM.json
+              )
+            - echo Executed GET Challenge Contributions script
+            - >
+              (
+                cd tests/load && 
+                cd .output && 
+                artillery run ../prod/getGlobalLdr.yml --config ../prod/config/loadMedium.yml --output r_getGlobalLdrM.json | tee -a r_getGlobalLdrM.txt
+                artillery report r_getGlobalLdrM.json
+              ) 
+            - echo Executed GET Global Leaderboards script
+            - >
+              (
+                cd tests/load && 
+                cd .output && 
+                artillery run ../prod/getChallengeLdr.yml --config ../prod/config/loadMedium.yml --output r_getChallengeLdrM.json | tee -a r_getChallengeLdrM.txt
+                artillery report r_getChallengeLdrM.json
+              )
+            - echo Executed GET Challenge Ranking script
+            - >
+              (
+                cd tests/load && 
+                cd .output && 
+                artillery run ../prod/getProfConnectedFriends.yml --config ../prod/config/loadMedium.yml --output r_getProfConnectedFriendsM.json | tee -a r_getProfConnectedFriendsM.txt
+                artillery report r_getProfConnectedFriendsM.json
+              )
+            - echo Executed GET Profile Connected Friends script
+    '*/ci/*':
+      - parallel:
+        - step:
+            image:
+              name: us.gcr.io/gonna-245008/ansible-gcp:latest
+              username: _json_key
+              password: '$GCR_JSON_KEY'
+            name: (Dev) Deploy API Instance
+            deployment: test-api
+            artifacts:
+              - report.txt
+            script:
+              # Setup image information.
+              - export BUILD_VERSION=1.0
+              - export GCLOUD_PROJECT=gonna-245008
+              - export GCLOUD_CLUSTER=gonna-dev
+              - export GCLOUD_ZONE=europe-north1-a 
+              - export GCLOUD_API_KEY_FILE=devops/config/gcp/gonna-api-key.json
+
+              - export COMPONENT_API=$BITBUCKET_REPO_SLUG-api
+              - export IMAGE_NAME_API=us.gcr.io/$GCLOUD_PROJECT/$COMPONENT_API:$BITBUCKET_BUILD_NUMBER
+
+              # Setup google cloud access.
+              - gcloud auth activate-service-account --key-file $GCLOUD_API_KEY_FILE
+              - gcloud config set project $GCLOUD_PROJECT
+              - gcloud container clusters get-credentials $GCLOUD_CLUSTER --zone=$GCLOUD_ZONE --project $GCLOUD_PROJECT
+              - gcloud auth configure-docker --quiet
+
+              # Build image.
+              - (cd src/api && docker build --rm -f "Development.Dockerfile" -t $IMAGE_NAME_API .)
+              # Publish image.
+              - docker push $IMAGE_NAME_API
+              # Deploy image.
+              - kubectl set image deployment $COMPONENT_API $COMPONENT_API=$IMAGE_NAME_API --record --namespace=$K8S_NAMESPACE
+        - step:
+            image:
+              name: us.gcr.io/gonna-245008/ansible-gcp:latest
+              username: _json_key
+              password: '$GCR_JSON_KEY'
+            name: (Dev) Deploy Client Instances
+            deployment: test
+            artifacts:
+              - report.txt
+            script:
+              - export BUILD_ENV=develop
+              - export ENVIRONMENT=production
+
+              - export BASE_ADMIN_URL=$DEV_BASE_ADMIN_URL
+
+              - export BUILD_VERSION=1.0
+              - export GCLOUD_PROJECT=gonna-245008
+              - export GCLOUD_CLUSTER=gonna-dev
+              - export GCLOUD_ZONE=europe-north1-a 
+              - export GCLOUD_API_KEY_FILE=devops/config/gcp/gonna-api-key.json
+
+              - export COMPONENT_ADMIN=$BITBUCKET_REPO_SLUG-admin
+              - export IMAGE_NAME_ADMIN=us.gcr.io/$GCLOUD_PROJECT/$COMPONENT_ADMIN:$BITBUCKET_BUILD_NUMBER
+
+              - gcloud auth activate-service-account --key-file $GCLOUD_API_KEY_FILE
+              - gcloud config set project $GCLOUD_PROJECT
+              - gcloud container clusters get-credentials $GCLOUD_CLUSTER --zone=$GCLOUD_ZONE --project $GCLOUD_PROJECT
+              - gcloud auth configure-docker --quiet
+
+              # Build mobile.
+              - (cd devops/ansible/build && ansible-playbook -i hosts -v build_mobile.yml)
+
+              # Prepare web-admin environment variables.
+              - (cd devops/ansible/prepare && ansible-playbook -i hosts -v prepare_web_admin.yml)
+
+              # Build image.
+              - echo $IMAGE_NAME_ADMIN
+              - docker build src/web-admin -t $IMAGE_NAME_ADMIN
+              # Publish image.
+              - docker push $IMAGE_NAME_ADMIN
+
+              # Deploy image.
+              - kubectl set image deployment $COMPONENT_ADMIN $COMPONENT_ADMIN=$IMAGE_NAME_ADMIN --record --namespace=$K8S_NAMESPACE
+      - step:
+          name: (Staging) Start Deployment
+          trigger: manual
+          script:
+            - echo "Starting deployment."
+      - parallel:
+        - step: 
+            image:
+              name: us.gcr.io/gonna-245008/ansible-gcp:latest
+              username: _json_key
+              password: '$GCR_JSON_KEY'
+            name: (Staging) Deploy API Instance
+            deployment: staging-api
+            artifacts:
+              - report.txt
+            script:
+              - export BUILD_ENV=staging
+
+              # Setup image information.
+              - export BUILD_VERSION=1.0
+              - export GCLOUD_PROJECT=gonna-245008
+              - export GCLOUD_CLUSTER=gonna-staging
+              - export GCLOUD_ZONE=europe-north1-a 
+              - export GCLOUD_API_KEY_FILE=devops/config/gcp/gonna-api-key.json
+
+              - export COMPONENT_API=$BITBUCKET_REPO_SLUG-api-$BUILD_ENV
+              - export IMAGE_NAME_API=us.gcr.io/$GCLOUD_PROJECT/$COMPONENT_API:$BITBUCKET_BUILD_NUMBER
+
+              # Setup google cloud access.
+              - gcloud auth activate-service-account --key-file $GCLOUD_API_KEY_FILE
+              - gcloud config set project $GCLOUD_PROJECT
+              - gcloud container clusters get-credentials $GCLOUD_CLUSTER --zone=$GCLOUD_ZONE --project $GCLOUD_PROJECT
+              - gcloud auth configure-docker --quiet
+
+              # Build image.
+              - (cd src/api && docker build --rm -f "Staging.Dockerfile" -t $IMAGE_NAME_API .)
+              # Publish image.
+              - docker push $IMAGE_NAME_API
+              # Deploy image.
+              - kubectl set image deployment $COMPONENT_API $COMPONENT_API=$IMAGE_NAME_API --record --namespace=$K8S_NAMESPACE
+        - step: 
+            image:
+              name: us.gcr.io/gonna-245008/ansible-gcp:latest
+              username: _json_key
+              password: '$GCR_JSON_KEY'
+            name: (Staging) Deploy Client Instances
+            deployment: staging
+            artifacts:
+              - report.txt
+            script:
+              - export BUILD_ENV=staging
+              - export ENVIRONMENT=production
+
+              - export BASE_ADMIN_URL=$STAGING_BASE_ADMIN_URL
+              - export BASE_API_URL=$STAGING_BASE_API_URL
+
+              - export BUILD_VERSION=1.0
+              - export GCLOUD_PROJECT=gonna-245008
+              - export GCLOUD_CLUSTER=gonna-staging
+              - export GCLOUD_ZONE=europe-north1-a 
+              - export GCLOUD_API_KEY_FILE=devops/config/gcp/gonna-api-key.json
+
+              - export COMPONENT_API=$BITBUCKET_REPO_SLUG-api-$BUILD_ENV
+              - export COMPONENT_ADMIN=$BITBUCKET_REPO_SLUG-admin-$BUILD_ENV
+
+              - export IMAGE_NAME_API=us.gcr.io/$GCLOUD_PROJECT/$COMPONENT_API:$BITBUCKET_BUILD_NUMBER
+              - export IMAGE_NAME_ADMIN=us.gcr.io/$GCLOUD_PROJECT/$COMPONENT_ADMIN:$BITBUCKET_BUILD_NUMBER
+
+              - gcloud auth activate-service-account --key-file $GCLOUD_API_KEY_FILE
+              - gcloud config set project $GCLOUD_PROJECT
+              - gcloud container clusters get-credentials $GCLOUD_CLUSTER --zone=$GCLOUD_ZONE --project $GCLOUD_PROJECT
+              - gcloud auth configure-docker --quiet
+
+              # Build mobile
+              - (cd devops/ansible/build && ansible-playbook -i hosts -v build_mobile.yml)
+
+              # Prepare web-admin environment variables
+              - echo $BASE_ADMIN_URL
+              - echo $BASE_API_URL
+              - (cd devops/ansible/prepare && ansible-playbook -i hosts -v prepare_web_admin.yml)
+
+              # Build image.
+              - echo $IMAGE_NAME_ADMIN
+              - docker build src/web-admin -t $IMAGE_NAME_ADMIN
+              # Publish image.
+              - docker push $IMAGE_NAME_ADMIN
+
+              # Deploy image.
+              - kubectl set image deployment $COMPONENT_ADMIN $COMPONENT_ADMIN=$IMAGE_NAME_ADMIN --record --namespace=$K8S_NAMESPACE
+      - step:
+          name: (Production) Start Deployment
+          trigger: manual
+          script:
+            - echo "Starting deployment."
+      - parallel:
+        - step: 
+            image:
+              name: us.gcr.io/gonna-245008/ansible-gcp:latest
+              username: _json_key
+              password: '$GCR_JSON_KEY'
+            name: (Production) Deploy API Instance
+            deployment: production-api
+            artifacts:
+              - report.txt
+            script:
+              - export BUILD_ENV=production
+
+              # Setup image information.
+              - export BUILD_VERSION=1.0
+              - export GCLOUD_PROJECT=gonna-245008
+              - export GCLOUD_CLUSTER=gonna-production
+              - export GCLOUD_ZONE=europe-north1-a 
+              - export GCLOUD_API_KEY_FILE=devops/config/gcp/gonna-api-key.json
+
+              - export COMPONENT_API=$BITBUCKET_REPO_SLUG-api-$BUILD_ENV
+              - export IMAGE_NAME_API=us.gcr.io/$GCLOUD_PROJECT/$COMPONENT_API:$BITBUCKET_BUILD_NUMBER
+
+              # Setup google cloud access.
+              - gcloud auth activate-service-account --key-file $GCLOUD_API_KEY_FILE
+              - gcloud config set project $GCLOUD_PROJECT
+              - gcloud container clusters get-credentials $GCLOUD_CLUSTER --zone=$GCLOUD_ZONE --project $GCLOUD_PROJECT
+              - gcloud auth configure-docker --quiet
+
+              # Build image.
+              - (cd src/api && docker build --rm -f "Production.Dockerfile" -t $IMAGE_NAME_API .)
+              # Publish image.
+              - docker push $IMAGE_NAME_API
+              # Deploy image.
+              - kubectl set image deployment $COMPONENT_API $COMPONENT_API=$IMAGE_NAME_API --record --namespace=$K8S_NAMESPACE
+        - step: 
+            image:
+              name: us.gcr.io/gonna-245008/ansible-gcp:latest
+              username: _json_key
+              password: '$GCR_JSON_KEY'
+            name: (Production) Deploy Client Instances
+            deployment: production
+            artifacts:
+              - report.txt
+            script:
+              - export BUILD_ENV=production
+              - export ENVIRONMENT=production
+
+              - export BASE_ADMIN_URL=$PROD_BASE_ADMIN_URL
+              - export BASE_API_URL=$PROD_BASE_API_URL
+
+              - export BUILD_VERSION=1.0
+              - export GCLOUD_PROJECT=gonna-245008
+              - export GCLOUD_CLUSTER=gonna-production
+              - export GCLOUD_ZONE=europe-north1-a 
+              - export GCLOUD_API_KEY_FILE=devops/config/gcp/gonna-api-key.json
+
+              - export COMPONENT_API=$BITBUCKET_REPO_SLUG-api-$BUILD_ENV
+              - export COMPONENT_ADMIN=$BITBUCKET_REPO_SLUG-admin-$BUILD_ENV
+
+              - export IMAGE_NAME_API=us.gcr.io/$GCLOUD_PROJECT/$COMPONENT_API:$BITBUCKET_BUILD_NUMBER
+              - export IMAGE_NAME_ADMIN=us.gcr.io/$GCLOUD_PROJECT/$COMPONENT_ADMIN:$BITBUCKET_BUILD_NUMBER
+
+              # Setup google cloud access.
+              - gcloud auth activate-service-account --key-file $GCLOUD_API_KEY_FILE
+              - gcloud config set project $GCLOUD_PROJECT
+              - gcloud container clusters get-credentials $GCLOUD_CLUSTER --zone=$GCLOUD_ZONE --project $GCLOUD_PROJECT
+              - gcloud auth configure-docker --quiet
+
+              # Build mobile
+              - (cd devops/ansible/build && ansible-playbook -i hosts -v build_mobile.yml)
+
+              # Prepare web-admin environment variables
+              - (cd devops/ansible/prepare && ansible-playbook -i hosts -v prepare_web_admin.yml)
+
+              # Build image.
+              - echo $IMAGE_NAME_ADMIN
+              - docker build src/web-admin -t $IMAGE_NAME_ADMIN
+              # Publish image.
+              - docker push $IMAGE_NAME_ADMIN
+
+              # Deploy image.
+              - kubectl set image deployment $COMPONENT_ADMIN $COMPONENT_ADMIN=$IMAGE_NAME_ADMIN --record --namespace=$K8S_NAMESPACE
+
+    '*/api/*':
+      - step:
+          name: (Test) Run API Unit Test
+          trigger: automatic
+          artifacts:
+            - report.txt
+          image: mcr.microsoft.com/dotnet/core/sdk:2.2
+          caches:
+            - dotnetcore
+          script:
+            - export PROJECT_NAME=$BITBUCKET_CLONE_DIR/src/api/Gonna.Api/Gonna.Api.csproj
+            - export TEST_NAME=$BITBUCKET_CLONE_DIR/src/api/Gonna.Api.Test/Gonna.Api.Test.csproj
+            - dotnet restore $PROJECT_NAME
+            - dotnet restore $TEST_NAME
+            - dotnet build $PROJECT_NAME
+            - dotnet test $TEST_NAME
+            - export TEST_NAME=$BITBUCKET_CLONE_DIR/src/api/Gonna.Service.Test/Gonna.Service.Test.csproj
+            - dotnet restore $TEST_NAME
+            - dotnet test $TEST_NAME
+    '*/story/*':
+      - step:
+          name: (Test) Run API Unit Test
+          trigger: automatic
+          artifacts:
+            - report.txt
+          image: mcr.microsoft.com/dotnet/core/sdk:2.2
+          caches:
+            - dotnetcore
+          script:
+            - export PROJECT_NAME=$BITBUCKET_CLONE_DIR/src/api/Gonna.Api/Gonna.Api.csproj
+            - export TEST_NAME=$BITBUCKET_CLONE_DIR/src/api/Gonna.Api.Test/Gonna.Api.Test.csproj
+            - dotnet restore $PROJECT_NAME
+            - dotnet restore $TEST_NAME
+            - dotnet build $PROJECT_NAME
+            - dotnet test $TEST_NAME
+            - export TEST_NAME=$BITBUCKET_CLONE_DIR/src/api/Gonna.Service.Test/Gonna.Service.Test.csproj
+            - dotnet restore $TEST_NAME
+            - dotnet test $TEST_NAME
+    'tests/load/*':
+      - step:
+          name: (Production) RUN load test scripts
+          artifacts:
+            - tests/load/.output/**
+          image: node
+          caches:
+            - node
+          script:
+            - echo Install dependencies
+            - npm install -g artillery
+            - npm install -g artillery-plugin-expect
+            - npm install -g artillery-plugin-fuzzer
+            - npm install -g artillery-plugin-metrics-by-endpoint
+
+            ############ M E D I U M  C O N F I G ############
+            - > 
+              (
+                cd tests/load && 
+                mkdir .output &&
+                cd .output && 
+                artillery run ../prod/getChallenges.yml --config ../prod/config/loadMedium.yml --output r_getChallengesM.json | tee -a r_getChallengesM.txt &&
+                artillery report r_getChallengesM.json
+              )
+            - echo Executed GET Challenges script
+            - >   
+              (
+                cd tests/load && 
+                cd .output && 
+                artillery run ../prod/getChlContr.yml --config ../prod/config/loadMedium.yml --output r_getChlContrM.json | tee -a r_getChlContrM.txt
+                artillery report r_getChlContrM.json
+              )
+            - echo Executed GET Challenge Contributions script
+            - >
+              (
+                cd tests/load && 
+                cd .output && 
+                artillery run ../prod/getGlobalLdr.yml --config ../prod/config/loadMedium.yml --output r_getGlobalLdrM.json | tee -a r_getGlobalLdrM.txt
+                artillery report r_getGlobalLdrM.json
+              ) 
+            - echo Executed GET Global Leaderboards script
+            - >
+              (
+                cd tests/load && 
+                cd .output && 
+                artillery run ../prod/getChallengeLdr.yml --config ../prod/config/loadMedium.yml --output r_getChallengeLdrM.json | tee -a r_getChallengeLdrM.txt
+                artillery report r_getChallengeLdrM.json
+              )
+            - echo Executed GET Challenge Ranking script
+            - >
+              (
+                cd tests/load && 
+                cd .output && 
+                artillery run ../prod/getProfConnectedFriends.yml --config ../prod/config/loadMedium.yml --output r_getProfConnectedFriendsM.json | tee -a r_getProfConnectedFriendsM.txt
+                artillery report r_getProfConnectedFriendsM.json
+              )
+
+            
+
+                         
+definitions:
+  services:
+    docker:
+      memory: 3072
