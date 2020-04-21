@@ -1,0 +1,23 @@
+
+## CREATE PATIENT
+## TO SETUP PERSONNUMER, FIRST AND LAST NAME, GO TO CONFIG FILE AND CHANGE "personnumer", "firstname", and "lastname" values
+
+scenarios:
+  - flow:
+    - loop:
+      - log: "-----------------------------------------Creating Careplan-----------------------------------------"
+      - post:
+          url: '/api/careplan/{{patientGUID}}'
+          headers: 
+            content-type: "application/json"
+
+          # REQUEST BODY
+          body: '{"title":"asd","description":"","addresses":[{"code":"I10-","system":"issues"}],"instantiates":null,"period":{"start":"2020-04-20T08:50:36.098Z","end":"9999-12-31T15:59:00.000Z"}}'
+          
+          # ASSERTIONS
+          expect:
+            - statusCode: 200
+            - contentType: json
+      - log: "-----------------------------------------Ended a scenario-----------------------------------------------"
+      count: 1  ## change the number on how times this script should run, default is 1
+

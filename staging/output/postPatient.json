@@ -1,0 +1,123 @@
+{
+  "aggregate": {
+    "timestamp": "2020-04-20T10:52:17.770Z",
+    "scenariosCreated": 1,
+    "scenariosCompleted": 1,
+    "requestsCompleted": 1,
+    "latency": {
+      "min": 928.5,
+      "max": 928.5,
+      "median": 928.5,
+      "p95": 928.5,
+      "p99": 928.5
+    },
+    "rps": {
+      "count": 1,
+      "mean": 0.1
+    },
+    "scenarioDuration": {
+      "min": 971.5,
+      "max": 971.5,
+      "median": 971.5,
+      "p95": 971.5,
+      "p99": 971.5
+    },
+    "scenarioCounts": {
+      "0": 1
+    },
+    "errors": {},
+    "codes": {
+      "201": 1
+    },
+    "matches": 0,
+    "customStats": {},
+    "counters": {},
+    "scenariosAvoided": 0,
+    "phases": [
+      {
+        "duration": 1,
+        "arrivalRate": 1,
+        "name": "Normal Load"
+      },
+      {
+        "pause": 10
+      }
+    ]
+  },
+  "intermediate": [
+    {
+      "timestamp": "2020-04-20T10:52:16.258Z",
+      "scenariosCreated": 1,
+      "scenariosCompleted": 1,
+      "requestsCompleted": 1,
+      "latency": {
+        "min": 928.5,
+        "max": 928.5,
+        "median": 928.5,
+        "p95": 928.5,
+        "p99": 928.5
+      },
+      "rps": {
+        "count": 1,
+        "mean": 0.11
+      },
+      "scenarioDuration": {
+        "min": 971.5,
+        "max": 971.5,
+        "median": 971.5,
+        "p95": 971.5,
+        "p99": 971.5
+      },
+      "scenarioCounts": {
+        "0": 1
+      },
+      "errors": {},
+      "codes": {
+        "201": 1
+      },
+      "matches": 0,
+      "latencies": [
+        928476400
+      ],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2020-04-20T10:52:17.764Z",
+      "scenariosCreated": 0,
+      "scenariosCompleted": 0,
+      "requestsCompleted": 0,
+      "latency": {
+        "min": null,
+        "max": null,
+        "median": null,
+        "p95": null,
+        "p99": null
+      },
+      "rps": {
+        "count": 0,
+        "mean": null
+      },
+      "scenarioDuration": {
+        "min": null,
+        "max": null,
+        "median": null,
+        "p95": null,
+        "p99": null
+      },
+      "scenarioCounts": {},
+      "errors": {},
+      "codes": {},
+      "matches": 0,
+      "latencies": [],
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    }
+  ]
+}

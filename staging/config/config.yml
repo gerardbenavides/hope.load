@@ -1,0 +1,72 @@
+##CONFIG SECTION##
+
+config:
+  tls: 
+    rejectUnauthorized: false # DISABLE CERTIFICATE VALIDATION, FOR STAGE AND DEV TESTING ONLY
+  http: 
+    timeout: 10
+    pool: 10 # All HTTP requests from all virtual users will be sent over the same 10 connections, to open and re-use a fixed number of connection
+  ensure:
+    maxErrorRate: 5
+
+  plugins: # Import plugins
+    expect: {}
+    fuzzer: {}
+
+  target: 'https://staging.static.tempest.hope.addimedical.netzon.se/api' # baseURL of API
+
+  phases:
+    - duration: 1 #Duration of test will be running
+      arrivalRate: 1 #Arrival of new virtual user per second (average virtual users)
+      name: "Normal Load" #Name of phase. Can set multiple phases
+    
+    - pause: 1 #Pauses for 1 second(s), no virtual users created in this duration
+
+
+  # SETUP VARIABLES HERE
+  variables:
+
+    ## Add single patient variables
+    personnummer: 
+      - "987654321"
+    firstname:
+      - "Test"
+    lastname:
+      - "Artillery2"
+
+    ## Add careplan variables
+    patientGUID:
+      - "1d4f2048-7c64-4e0d-8707-cbb979b86168"
+    healthIssue:
+      - "I64-"
+    careplanName:
+      - "Any careplan name (Artillery)"
+
+    ## Add recurring activities variables
+    careplanGUID:
+      - "6967da4c-c7a1-45e4-8006-d562b37aec8b"
+    activityCode:
+      - "HT.Weight"
+    repeatCount: ## Recurring Activity - number of times recurring activity is created
+      - "10" 
+    period: ## Recurring Activity - Interval per day //// This repeatCount = 10 and period = 1 value will create 1 recurring activity each day for 10 days
+      - "1"
+    calendarStart:
+      - "Sat, 15 Feb 2020 16:00:00 GMT" ## Please follow the format e.g. Sat, 15 Feb 2020 16:00:00 GMT
+    calendarEnd:
+      - "Sat, 20 Jun 2020 16:00:00 GMT" ## Please follow the format e.g. Sat, 20 Jun 2020 16:00:00 GMT
+
+    max_items: 
+      - "10000"
+
+  defaults:
+    headers: #Setup required authorization here, if there is any, before starting to execute load test
+      ServiceAccountAuthorization: 'bearer NETZON'
+      Authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9hdXRoZW50aWNhdGlvbiI6IntcInN0YXR1c1wiOjAsXCJwcmluY2lhbFwiOm51bGwsXCJzZXNzaW9uXCI6e1wic2Vzc2lvbklkXCI6XCIyMzA1ZTAwNC05ZDVjLTRiMmItYmFhMC1jZDk3YmVlOTg3ZmFcIixcInVzZXJSZWZcIjp7XCJndWlkXCI6XCI2YTc2ODdhZS03ZDZmLTRmMTktYWM1Mi1lNzI1ZTlmMDc2ZjJcIixcInZlcnNpb25cIjpudWxsLFwidGl0bGVcIjpcIlRlY2ggUyAoVGVjaFN1cHBvcnQpXCJ9LFwidXNlcklkXCI6e1widHlwZVwiOntcImNvZGVcIjpcIlwiLFwic3lzdGVtXCI6XCJcIn0sXCJzeXN0ZW1cIjpcIlwiLFwidmFsdWVcIjpcIlNVUFBPUlQwMVwifSxcInJvbGVcIjoxLFwibG9naW5NZXRob2RcIjp7XCJjb2RlXCI6XCJUb2tlblwiLFwic3lzdGVtXCI6XCJIT1BFLkxvZ2luTWV0aG9kXCJ9LFwiZXhwaXJlc1wiOlwiMjAyMy0wMS0xNVQxMDoyNzowMy42NTQ4NTk5WlwiLFwiY29tbWlzc2lvblwiOntcImlkXCI6bnVsbCxcImF0dHJpYnV0ZXNcIjpbe1wibmFtZVwiOlwiUm9sZVwiLFwidmFsdWVcIjpcIlByYWN0aXRpb25lclwifSx7XCJuYW1lXCI6XCJSb2xlXCIsXCJ2YWx1ZVwiOlwiRWRpdG9yXCJ9XX0sXCJvcmdSZWZcIjp7XCJndWlkXCI6XCJjZTM0Yzc0NS1mYTY4LTRmMDQtYjFiZi1kYmU1MWUxOTkzMDhcIixcInZlcnNpb25cIjpudWxsLFwidGl0bGVcIjpcIlPDr8K_wr1kcmEgw6_Cv8K9bHZzYm9yZ3Mgc2p1a2h1c1wifSxcIm9yZ0lkXCI6e1widHlwZVwiOntcImNvZGVcIjpcIlwiLFwic3lzdGVtXCI6XCJcIn0sXCJzeXN0ZW1cIjpcIlwiLFwidmFsdWVcIjpcIlZHUjAwOVwifSxcImhlYWx0aENhcmVQcm92aWRlcklkXCI6e1widHlwZVwiOntcImNvZGVcIjpcIlwiLFwic3lzdGVtXCI6XCJcIn0sXCJzeXN0ZW1cIjpcIlwiLFwidmFsdWVcIjpcIlZHUlwifSxcImhlYWx0aENhcmVVbml0SWRcIjpudWxsLFwiYWNjb3VudFwiOlwiTkVUWk9OXCIsXCJ0aW1lem9uZVwiOlwiMDA6MDA6MDBcIixcImV4dGVuc2lvblwiOlt7XCJuYW1lXCI6XCJcIixcInZhbHVlXCI6XCJcIn1dfSxcInNlc3Npb25LZXlcIjpcIjZUVWN5L0Rlek1qTU5keWZ0a2h5QjNYNDE1SWtjTFZjM2E1TGthVVFabXVkUWhWWjlvMGdvMW5yUmxIOUFYRmZDY0VHVXNGWHM1bXBENUJXMUVoMFVRPT1cIn0iLCJuYmYiOjE1ODczNzg0MjMsImV4cCI6MTYxODkxNDQyMywiaWF0IjoxNTg3Mzc4NDIzfQ.QamyT3ucV0BlNdxwRd8RmnGHxA0rJ-BGps4jJ4CNPbk'
+      Accept-Language: 'en'
+      accept: application/json
+      Content-Type: application/json-patch+json
+    
+
+## END OF CONFIG
+

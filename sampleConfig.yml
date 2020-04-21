@@ -16,7 +16,7 @@ config:
   target: 'http://staging.api.gonna.netzon.se' # baseURL of API
 
   phases:
-    - duration: 1 #Duration of test will be running
+    - duration: 10 #Duration of test will be running
       arrivalRate: 5 #Arrival of new virtual user per second (average virtual users)
       name: "Normal Load" #Name of phase. Can set multiple phases
     

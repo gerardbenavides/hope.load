@@ -1,0 +1,14 @@
+
+scenarios:
+  - flow:
+    - loop:
+      - log: "---------------------------------------------Getting Calendar Data-----------------------------------------------"
+      - get: #GET STARTED AND FINISHED CHALLENGES
+          url: '/api/activity/{{patientGUID}}?sortBy=Start.Value&all=true&status=&startDateTime={{calendarStart}}&endDateTime={{calendarEnd}}&pageSize=10000&pageNumber=1&types=&zoom=true&openEnd=false'
+          expect:
+            - statusCode: 200
+            - contentType: json
+          #   - hasProperty: data ##[0].status
+      - log: "-----------------------------------------------Ended a scenario-----------------------------------------------"
+      count: 1
+     
