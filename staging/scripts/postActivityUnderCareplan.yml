@@ -5,19 +5,19 @@
 scenarios:
   - flow:
     - loop:
-      - log: "----------------------------- --Creating Activity under a Careplan-----------------------------------------"
+      - log: "--------------------------------Creating Activity under a Careplan-----------------------------------------"
       - post:
           url: '/api/activity/{{patientGUID}}/{{careplanGUID}}'
           headers: 
             content-type: "application/json"
 
           # REQUEST BODY
-          body: '{"code":"{{activityCode}}","eFormCode":null,"eFormSystem":null,"title":"Vikt, hemtest","type":"Recurring","startTime":"2020-04-20T04:00:02.062Z","startBeforeMinutes":null,"startAfterMinutes":null,"description":"","repeat":{"count":"{{repeatCount}}","period":"{{period}}","periodUnit":"Day"},"notifications":[],"instantiates":null}'
+          body: '{"code":"EF","eFormCode":"lim_fodelse","eFormSystem":"eform","title":"Formulär - Födelseuppgifter","type":"Single","startTime":"2020-04-23T04:00:41.861Z","startBeforeMinutes":null,"startAfterMinutes":null,"description":"","repeat":null,"notifications":[],"instantiates":null}'
           
           # ASSERTIONS
           expect:
             - statusCode: 201
             - contentType: json
       - log: "-----------------------------------------Ended a scenario-----------------------------------------------"
-      count: 1  ## change the number on how times this script should run, default is 1
+      count: 1000  ## change the number on how times this script should run, default is 1
 
