@@ -4,7 +4,7 @@ scenarios:
     - loop:
       - log: "---------------------------------------------Getting Patient List-----------------------------------------"
       - get: #GET STARTED AND FINISHED CHALLENGES
-          url: '/api/patient?pageSize=100&pageNumber=1'
+          url: '/api/patient?pageSize=50&pageNumber=1'
           expect:
             - statusCode: 200
             - contentType: json
