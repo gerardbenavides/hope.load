@@ -12,7 +12,7 @@ scenarios:
             content-type: "application/json"
 
           # REQUEST BODY
-          body: '{"title":"test careplan","description":"","addresses":[{"code":"P07-","system":"issues"}],"instantiates":null,"period":{"start":"2020-04-27T02:35:19.247Z","end":"9999-12-31T15:59:00.000Z"}}'
+          body: '{"title":"Test Careplan","description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","addresses":[{"code":"P07-","system":"issues"}],"instantiates":null,"period":{"start":"2020-04-28T05:23:58.351Z","end":"9999-12-31T15:59:00.000Z"}}'
           
           # ASSERTIONS
           expect:

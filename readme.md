@@ -15,7 +15,7 @@
 - Token Generator [**here**](https://drive.google.com/open?id=1cKWBZSWKFqZbuC-lqEqNc_HvUQihNFnG)
 
 
- [**Google doc link here**](https://docs.google.com/document/d/1qxw1UEdX6ibl5Xvx5JLCCErBKsREB5WQvh_-3zX7lKE/edit?usp=sharing)
+ [**Google latest documentation link here**](https://docs.google.com/document/d/1qxw1UEdX6ibl5Xvx5JLCCErBKsREB5WQvh_-3zX7lKE/edit?usp=sharing)
 
 ## Setup access
 
