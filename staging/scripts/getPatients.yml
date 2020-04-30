@@ -3,12 +3,11 @@ scenarios:
   - flow:
     - loop:
       - log: "---------------------------------------------Getting Patient List-----------------------------------------"
-      - get: #GET STARTED AND FINISHED CHALLENGES
+      - get: 
           url: '/api/patient?pageSize=50&pageNumber=1'
           expect:
             - statusCode: 200
             - contentType: json
-          #   - hasProperty: data ##[0].status
       - log: "-----------------------------------------------Ended a scenario-----------------------------------------------"
       count: 1
       

@@ -12,12 +12,12 @@ scenarios:
             content-type: "application/json"
 
           # REQUEST BODY
-          body: '{"code":"AC.ECG","eFormCode":null,"eFormSystem":null,"title":"EKG","type":"Single","startTime":"2020-04-27T04:00:20.177Z","startBeforeMinutes":null,"startAfterMinutes":null,"description":"","repeat":null,"notifications":[],"instantiates":null}'
+          body: '{"code":"AC","eFormCode":null,"eFormSystem":null,"title":"Aktivitet artillery","type":"Single","startTime":"2020-04-29T04:00:59.504Z","startBeforeMinutes":null,"startAfterMinutes":null,"description":"asadasds","repeat":null,"notifications":[],"instantiates":null}s'
           
           # ASSERTIONS
           expect:
             - statusCode: 201
             - contentType: json
       - log: "-----------------------------------------Ended a scenario-----------------------------------------------"
-      count: 4999  ## change the number on how times this script should run, default is 1
+      count: 1  ## change the number on how times this script should run, default is 1
 

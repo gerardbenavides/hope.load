@@ -19,5 +19,5 @@ scenarios:
             - statusCode: 200
             - contentType: json
       - log: "-----------------------------------------Ended a scenario-----------------------------------------------"
-      count: 100  ## change the number on how times this script should run, default is 1
+      count: 1  ## change the number on how times this script should run, default is 1
 
