@@ -1,0 +1,1 @@
+artillery run scripts/postRecurringUnderCareplan.yml --config config/config.yml -o output/postRecurringUnderCareplan.json && artillery report output/postRecurringUnderCareplan.json

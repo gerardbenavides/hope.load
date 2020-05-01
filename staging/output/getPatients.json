@@ -1,33 +1,35 @@
 {
   "aggregate": {
-    "timestamp": "2020-04-30T11:59:39.201Z",
+    "timestamp": "2020-05-01T07:00:06.899Z",
     "scenariosCreated": 1,
-    "scenariosCompleted": 1,
+    "scenariosCompleted": 0,
     "requestsCompleted": 1,
     "latency": {
-      "min": 998.2,
-      "max": 998.2,
-      "median": 998.2,
-      "p95": 998.2,
-      "p99": 998.2
+      "min": 911.8,
+      "max": 911.8,
+      "median": 911.8,
+      "p95": 911.8,
+      "p99": 911.8
     },
     "rps": {
       "count": 1,
-      "mean": 0.68
+      "mean": 0.67
     },
     "scenarioDuration": {
-      "min": 1040.9,
-      "max": 1040.9,
-      "median": 1040.9,
-      "p95": 1040.9,
-      "p99": 1040.9
+      "min": null,
+      "max": null,
+      "median": null,
+      "p95": null,
+      "p99": null
     },
     "scenarioCounts": {
       "0": 1
     },
-    "errors": {},
+    "errors": {
+      "Failed expectations for request https://staging.static.tempest.hope.addimedical.netzon.se/api/api/patient/datacolumns?sortBy=name.given&sortOrder=0&filterBy=&pageSize=10&pageNumber=1&totalItems=null&status=0&t=1588247769178": 1
+    },
     "codes": {
-      "200": 1
+      "401": 1
     },
     "matches": 0,
     "customStats": {},
@@ -46,38 +48,40 @@
   },
   "intermediate": [
     {
-      "timestamp": "2020-04-30T11:59:39.195Z",
+      "timestamp": "2020-05-01T07:00:06.891Z",
       "scenariosCreated": 1,
-      "scenariosCompleted": 1,
+      "scenariosCompleted": 0,
       "requestsCompleted": 1,
       "latency": {
-        "min": 998.2,
-        "max": 998.2,
-        "median": 998.2,
-        "p95": 998.2,
-        "p99": 998.2
+        "min": 911.8,
+        "max": 911.8,
+        "median": 911.8,
+        "p95": 911.8,
+        "p99": 911.8
       },
       "rps": {
         "count": 1,
         "mean": 0.68
       },
       "scenarioDuration": {
-        "min": 1040.9,
-        "max": 1040.9,
-        "median": 1040.9,
-        "p95": 1040.9,
-        "p99": 1040.9
+        "min": null,
+        "max": null,
+        "median": null,
+        "p95": null,
+        "p99": null
       },
       "scenarioCounts": {
         "0": 1
       },
-      "errors": {},
+      "errors": {
+        "Failed expectations for request https://staging.static.tempest.hope.addimedical.netzon.se/api/api/patient/datacolumns?sortBy=name.given&sortOrder=0&filterBy=&pageSize=10&pageNumber=1&totalItems=null&status=0&t=1588247769178": 1
+      },
       "codes": {
-        "200": 1
+        "401": 1
       },
       "matches": 0,
       "latencies": [
-        998184200
+        911800900
       ],
       "customStats": {},
       "counters": {},
