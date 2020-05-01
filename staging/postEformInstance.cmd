@@ -1,0 +1,1 @@
+artillery run scripts/postEformInstance.yml --config config/config.yml -o output/postEformInstance.json && artillery report output/postEformInstance.json

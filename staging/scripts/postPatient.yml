@@ -25,16 +25,16 @@ config:
   # SETUP VARIABLES HERE
   variables: 
     personnummer: 
-      - "91239292"
+      - "1012322"
     firstname:
       - "John"
     lastname:
-      - "Doe Artillery2"
+      - "Doe Artillery 1022"
 
   defaults:
     headers: #Setup required authorization here, if there is any, before starting to execute load test
       ServiceAccountAuthorization: 'bearer STAGING_LESSISMORE'
-      Authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9hdXRoZW50aWNhdGlvbiI6IntcInN0YXR1c1wiOjAsXCJwcmluY2lhbFwiOm51bGwsXCJzZXNzaW9uXCI6e1wic2Vzc2lvbklkXCI6XCIxMzE0ODAwNS02ZWQ3LTRkMDItYjBkNi04YWUyN2QyNjEyMWNcIixcInVzZXJSZWZcIjp7XCJndWlkXCI6XCIzNTQzZGFmZC1lZjYyLTQ2ZTEtYmYyOC0xNjlhY2M3YTc0YmNcIixcInZlcnNpb25cIjpudWxsLFwidGl0bGVcIjpcIkthcmwtSm9oYW4gV2VzdGJlcmdcIn0sXCJ1c2VySWRcIjp7XCJ0eXBlXCI6e1wiY29kZVwiOlwiXCIsXCJzeXN0ZW1cIjpcIlwifSxcInN5c3RlbVwiOlwiXCIsXCJ2YWx1ZVwiOlwiVkdSeDAxNFwifSxcInJvbGVcIjoxLFwibG9naW5NZXRob2RcIjp7XCJjb2RlXCI6XCJUb2tlblwiLFwic3lzdGVtXCI6XCJIT1BFLkxvZ2luTWV0aG9kXCJ9LFwiZXhwaXJlc1wiOlwiMjAyMy0wMS0yMlQwNDoyODoyNC4zMDgwMDE2WlwiLFwiY29tbWlzc2lvblwiOntcImlkXCI6bnVsbCxcImF0dHJpYnV0ZXNcIjpbe1wibmFtZVwiOlwiXCIsXCJ2YWx1ZVwiOlwiXCJ9XX0sXCJvcmdSZWZcIjp7XCJndWlkXCI6XCJjZTM0Yzc0NS1mYTY4LTRmMDQtYjFiZi1kYmU1MWUxOTkzMDhcIixcInZlcnNpb25cIjpudWxsLFwidGl0bGVcIjpcIlPDtmRyYSDDhGx2c2JvcmdzIHNqdWtodXNcIn0sXCJvcmdJZFwiOntcInR5cGVcIjp7XCJjb2RlXCI6XCJcIixcInN5c3RlbVwiOlwiXCJ9LFwic3lzdGVtXCI6XCJcIixcInZhbHVlXCI6XCJWR1IwMDlcIn0sXCJoZWFsdGhDYXJlUHJvdmlkZXJJZFwiOntcInR5cGVcIjp7XCJjb2RlXCI6XCJcIixcInN5c3RlbVwiOlwiXCJ9LFwic3lzdGVtXCI6XCJcIixcInZhbHVlXCI6XCJWR1JcIn0sXCJoZWFsdGhDYXJlVW5pdElkXCI6bnVsbCxcImFjY291bnRcIjpcIlNUQUdJTkdfTEVTU0lTTU9SRVwiLFwidGltZXpvbmVcIjpcIjAwOjAwOjAwXCIsXCJleHRlbnNpb25cIjpbe1wibmFtZVwiOlwiXCIsXCJ2YWx1ZVwiOlwiXCJ9LHtcIm5hbWVcIjpcIkhPUEUuQWxpYXNcIixcInZhbHVlXCI6XCJLV1wifSx7XCJuYW1lXCI6XCJIT1BFLkNoYXRcIixcInZhbHVlXCI6XCJcIn0se1wibmFtZVwiOlwiSE9QRS5Qcm9mZXNzaW9uYWxUaXRsZVwiLFwidmFsdWVcIjpcIlwifV19LFwic2Vzc2lvbktleVwiOlwiZlAzNS9DK1lTekR6djROTWJsS3E2OXlFalBFZ2F6bXhtNzRaRURWUlVWWVIxYzMyQjJaMjRVbzJzb0pYWW1rRTNhY2RMTVBQbVBYVkZsMHpmbWJWdGc9PVwifSIsIm5iZiI6MTU4ODA0ODEwNCwiZXhwIjoxNTg4MDUxNzA0LCJpYXQiOjE1ODgwNDgxMDR9.GkUY-law51zsvYCxnMcEarEvnNGhIJzClEhD-Xgy0mo'
+      Authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9hdXRoZW50aWNhdGlvbiI6IntcInN0YXR1c1wiOjAsXCJwcmluY2lhbFwiOm51bGwsXCJzZXNzaW9uXCI6e1wic2Vzc2lvbklkXCI6XCI2NjA3YWEwMS1jNjBiLTQ0MDgtYjE0MC1lN2UxNjc5NzA1MThcIixcInVzZXJSZWZcIjp7XCJndWlkXCI6XCIzNTQzZGFmZC1lZjYyLTQ2ZTEtYmYyOC0xNjlhY2M3YTc0YmNcIixcInZlcnNpb25cIjpudWxsLFwidGl0bGVcIjpcIkthcmwtSm9oYW4gV2VzdGJlcmdcIn0sXCJ1c2VySWRcIjp7XCJ0eXBlXCI6e1wiY29kZVwiOlwiXCIsXCJzeXN0ZW1cIjpcIlwifSxcInN5c3RlbVwiOlwiXCIsXCJ2YWx1ZVwiOlwiVkdSeDAxNFwifSxcInJvbGVcIjoxLFwibG9naW5NZXRob2RcIjp7XCJjb2RlXCI6XCJUb2tlblwiLFwic3lzdGVtXCI6XCJIT1BFLkxvZ2luTWV0aG9kXCJ9LFwiZXhwaXJlc1wiOlwiMjAyMy0wMS0yNVQwNDo1Nzo0Ni4yNDM5NTI5WlwiLFwiY29tbWlzc2lvblwiOntcImlkXCI6bnVsbCxcImF0dHJpYnV0ZXNcIjpbe1wibmFtZVwiOlwiXCIsXCJ2YWx1ZVwiOlwiXCJ9XX0sXCJvcmdSZWZcIjp7XCJndWlkXCI6XCJjZTM0Yzc0NS1mYTY4LTRmMDQtYjFiZi1kYmU1MWUxOTkzMDhcIixcInZlcnNpb25cIjpudWxsLFwidGl0bGVcIjpcIlPDtmRyYSDDhGx2c2JvcmdzIHNqdWtodXNcIn0sXCJvcmdJZFwiOntcInR5cGVcIjp7XCJjb2RlXCI6XCJcIixcInN5c3RlbVwiOlwiXCJ9LFwic3lzdGVtXCI6XCJcIixcInZhbHVlXCI6XCJWR1IwMDlcIn0sXCJoZWFsdGhDYXJlUHJvdmlkZXJJZFwiOntcInR5cGVcIjp7XCJjb2RlXCI6XCJcIixcInN5c3RlbVwiOlwiXCJ9LFwic3lzdGVtXCI6XCJcIixcInZhbHVlXCI6XCJWR1JcIn0sXCJoZWFsdGhDYXJlVW5pdElkXCI6bnVsbCxcImFjY291bnRcIjpcIlNUQUdJTkdfTEVTU0lTTU9SRVwiLFwidGltZXpvbmVcIjpcIjAwOjAwOjAwXCIsXCJleHRlbnNpb25cIjpbe1wibmFtZVwiOlwiXCIsXCJ2YWx1ZVwiOlwiXCJ9LHtcIm5hbWVcIjpcIkhPUEUuQWxpYXNcIixcInZhbHVlXCI6XCJLV1wifSx7XCJuYW1lXCI6XCJIT1BFLkNoYXRcIixcInZhbHVlXCI6XCJcIn0se1wibmFtZVwiOlwiSE9QRS5Qcm9mZXNzaW9uYWxUaXRsZVwiLFwidmFsdWVcIjpcIlwifV19LFwic2Vzc2lvbktleVwiOlwibHgybjR2RDBlbVRFM2xHMzdvVGFBRUEvYlRrLzkwYnJsSVJzNVdDTk9tZWNuRG02SzdkZ3hvN3EvdE9icUxsTXZUZnlTTHlBQ3Uxdkk4QzgvYVFRbWc9PVwifSIsIm5iZiI6MTU4ODMwOTA2NiwiZXhwIjoxNTg4MzEyNjY2LCJpYXQiOjE1ODgzMDkwNjZ9.2VVaes8xeT0IohsjAEuCfTVOHrtcbiTr4vvJLtjBaYM'
       Accept-Language: 'en'
       accept: application/json
       Content-Type: application/json-patch+json
@@ -56,7 +56,20 @@ scenarios:
           content-type: "application/json"
 
         # REQUEST BODY
-        body: '{"identifier":"{{personnummer}}","name":{"family":"{{lastname}}","given":"{{firstname}}"},"gender":{"code":"male","system":"administrative-gender"},"birthDate":{"day":1,"month":4,"year":2000},"emailAddress":"asdasd@masdas.sad","sms":"12312","addressLines":[],"postalCode":null,"city":null,"status":0,"patientGroup":null}'
+        body: '{"identifier":"{{personnummer}}",
+                "name":{
+                  "family":"{{lastname}}",
+                  "given":"{{firstname}}"},
+                "gender":{
+                  "code":"male",
+                  "system":"administrative-gender"},
+                "birthDate":{"day":1,"month":4,"year":2000},
+                "emailAddress":"sample@ema.il","sms":"49876543",
+                "addressLines":[],
+                "postalCode":null,
+                "city":null,
+                "status":0,
+                "patientGroup":null}'
         
         # ASSERTIONS
         expect:

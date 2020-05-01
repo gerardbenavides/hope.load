@@ -1,6 +1,6 @@
 
 scenarios: ##GET CALENDAR DATA OF PATIENT IN PRACTITIONER WEB (using /api/api/activity/v3/ endpoint)
-  - flow:
+  - flow: ##BY DEFAULT, IT GETS ALL ACTIVITIES FOR THE WHOLE YEAR OF 2020. TO CHANGE, GO TO CONFIG.YML FILE AND UPDATE "calendarStart" and "calendarEnd"
     - loop:
       - log: "---------------------------------------------Getting Calendar Data-----------------------------------------------"
       - get: 

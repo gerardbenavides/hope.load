@@ -1,8 +1,4 @@
-
-## CREATE PATIENT
-## TO SETUP PERSONNUMER, FIRST AND LAST NAME, GO TO CONFIG FILE AND CHANGE "personnumer", "firstname", and "lastname" values
-
-scenarios:
+scenarios: ## CREATES A PARTICULAR SINGLE ACTIVITY ON A CERTAIN DATE
   - flow:
     - loop:
       - log: "--------------------------------Creating Activity under a Careplan-----------------------------------------"
@@ -12,7 +8,18 @@ scenarios:
             content-type: "application/json"
 
           # REQUEST BODY
-          body: '{"code":"AC","eFormCode":null,"eFormSystem":null,"title":"Aktivitet artillery","type":"Single","startTime":"2020-04-29T04:00:59.504Z","startBeforeMinutes":null,"startAfterMinutes":null,"description":"asadasds","repeat":null,"notifications":[],"instantiates":null}s'
+          body: '{"code":"AC",
+                "eFormCode":null,
+                "eFormSystem":null,
+                "title":"Aktivitet artillery",
+                "type":"Single",
+                "startTime":"2020-04-29T04:00:59.504Z",
+                "startBeforeMinutes":null,
+                "startAfterMinutes":null,
+                "description":"asadasds",
+                "repeat":null,
+                "notifications":[],
+                "instantiates":null}s'
           
           # ASSERTIONS
           expect:

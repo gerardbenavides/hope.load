@@ -1,0 +1,23 @@
+
+## CREATE PATIENT
+## TO SETUP PERSONNUMER, FIRST AND LAST NAME, GO TO CONFIG FILE AND CHANGE "personnumer", "firstname", and "lastname" values
+
+scenarios:
+  - flow:
+    - loop:
+      - log: "-----------------------------------------Creating Careplan-----------------------------------------"
+      - post:
+          url: '/api/eforminstance/{{patientGUID}}'
+          headers: 
+            content-type: "application/json"
+
+          # REQUEST BODY
+          body: '{"activityGuid": "{{activityGUID}}"}'
+          
+          # ASSERTIONS
+          expect:
+            - statusCode: 200
+            - contentType: json
+      - log: "-----------------------------------------Ended a scenario-----------------------------------------------"
+      count: 1  ## change the number on how times this script should run, default is 1
+

@@ -28,7 +28,7 @@ config:
 
     ## Add careplan variables
     patientGUID:
-      - "cd1efe99-0495-44b9-af4e-efabe7a58de1"
+      - "1c8b8308-71b1-4559-8356-32a73d605bee"
     healthIssue:
       - "I64-"
     careplanName:
@@ -36,7 +36,7 @@ config:
 
     ## Add recurring activities variables
     careplanGUID:
-      - "ae6d14e8-42fe-4b41-a7dc-546f5e1eedde"
+      - "2a1243d9-4ef5-499f-bc10-cf7634f6ee5e"
     activityCode:
       - "HT.Weight"
     # repeatCount: ## Recurring Activity - number of times recurring activity is created
@@ -44,17 +44,24 @@ config:
     # period: ## Recurring Activity - Interval per day //// This repeatCount = 10 and period = 1 value will create 1 recurring activity each day for 10 days
     #   - "1"
     calendarStart:
-      - "Wed, 1 Apr 2020 16:00:00 GMT" ## Please follow the format e.g. Sat, 15 Feb 2020 16:00:00 GMT
+      - "Wed, 1 Jan 2020 16:00:00 GMT" ## Please follow the format e.g. Sat, 15 Feb 2020 16:00:00 GMT
     calendarEnd:
-      - "Thu, 30 Apr 2020 16:00:00 GMT" ## Please follow the format e.g. Sat, 20 Jun 2020 16:00:00 GMT
+      - "Thu, 31 Dec 2020 16:00:00 GMT" ## Please follow the format e.g. Sat, 20 Jun 2020 16:00:00 GMT
+
+    ## POST Eform Instance
+    activityGUID: "ccc6fced-9011-43fe-81c1-e4189d76497c" 
+
+    ## GET Eform Instance
+    eformInstanceGUID: "1cf84330-8098-4ff8-a1bd-4880efab20a5" 
+
 
     max_items: 
       - "10000"
 
   defaults:
     headers: #Setup required authorization here, if there is any, before starting to execute load test
-      ServiceAccountAuthorization: 'bearer NETZON'
-      Authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9hdXRoZW50aWNhdGlvbiI6IntcInN0YXR1c1wiOjAsXCJwcmluY2lhbFwiOm51bGwsXCJzZXNzaW9uXCI6e1wic2Vzc2lvbklkXCI6XCJiNGU2ODM3ZS0wYWM4LTQzZmItYmU5Zi0xZjU0YjJjZWNmZDJcIixcInVzZXJSZWZcIjp7XCJndWlkXCI6XCIzNTQzZGFmZC1lZjYyLTQ2ZTEtYmYyOC0xNjlhY2M3YTg0YmRcIixcInZlcnNpb25cIjpudWxsLFwidGl0bGVcIjpcIlRlY2ggU3Vwb3J0XCJ9LFwidXNlcklkXCI6e1widHlwZVwiOntcImNvZGVcIjpcIlwiLFwic3lzdGVtXCI6XCJcIn0sXCJzeXN0ZW1cIjpcIlwiLFwidmFsdWVcIjpcIlNVUFBPUlQwMVwifSxcInJvbGVcIjoxLFwibG9naW5NZXRob2RcIjp7XCJjb2RlXCI6XCJUb2tlblwiLFwic3lzdGVtXCI6XCJIT1BFLkxvZ2luTWV0aG9kXCJ9LFwiZXhwaXJlc1wiOlwiMjAyMy0wMS0yNlQwMzozOToxMC41MzU4NzEzWlwiLFwiY29tbWlzc2lvblwiOntcImlkXCI6bnVsbCxcImF0dHJpYnV0ZXNcIjpbe1wibmFtZVwiOlwiUm9sZVwiLFwidmFsdWVcIjpcIlByYWN0aXRpb25lclwifV19LFwib3JnUmVmXCI6e1wiZ3VpZFwiOlwiY2UzNGM3NDUtZmE2OC00ZjA0LWIxYmYtZGJlNTFlMTk5MzA4XCIsXCJ2ZXJzaW9uXCI6bnVsbCxcInRpdGxlXCI6XCJTw7ZkcmEgw4RsdnNib3JncyBzanVraHVzXCJ9LFwib3JnSWRcIjp7XCJ0eXBlXCI6e1wiY29kZVwiOlwiXCIsXCJzeXN0ZW1cIjpcIlwifSxcInN5c3RlbVwiOlwiXCIsXCJ2YWx1ZVwiOlwiVkdSMDA5XCJ9LFwiaGVhbHRoQ2FyZVByb3ZpZGVySWRcIjp7XCJ0eXBlXCI6e1wiY29kZVwiOlwiXCIsXCJzeXN0ZW1cIjpcIlwifSxcInN5c3RlbVwiOlwiXCIsXCJ2YWx1ZVwiOlwiVkdSXCJ9LFwiaGVhbHRoQ2FyZVVuaXRJZFwiOm51bGwsXCJhY2NvdW50XCI6XCJORVRaT05cIixcInRpbWV6b25lXCI6XCIwMDowMDowMFwiLFwiZXh0ZW5zaW9uXCI6W3tcIm5hbWVcIjpcIlwiLFwidmFsdWVcIjpcIlwifSx7XCJuYW1lXCI6XCJIT1BFLkFsaWFzXCIsXCJ2YWx1ZVwiOlwiVFNcIn0se1wibmFtZVwiOlwiSE9QRS5DaGF0XCIsXCJ2YWx1ZVwiOlwiWVwifSx7XCJuYW1lXCI6XCJIT1BFLlByb2Zlc3Npb25hbFRpdGxlXCIsXCJ2YWx1ZVwiOlwiU3VwcG9ydFwifV19LFwic2Vzc2lvbktleVwiOlwiSWc4am9BSnhQRnZwb1hXcUZMakpDc0NtSDRvTjM4RGFwS01mZDFrMTRwdXNKbWtVTDhxVzlsZGVqMGFpVmJEME1RaWhUbjNtQVhudnMyUFVkTStvN2c9PVwifSIsIm5iZiI6MTU4ODMwNDM1MCwiZXhwIjoxNjE5ODQwMzUwLCJpYXQiOjE1ODgzMDQzNTB9.YoKsNSdlKlJS1IRwEWeHZol8tiHzJWoaZDeSqIJNDKI'
+      ServiceAccountAuthorization: 'bearer STAGING_LESSISMORE'
+      Authorization: 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9hdXRoZW50aWNhdGlvbiI6IntcInN0YXR1c1wiOjAsXCJwcmluY2lhbFwiOm51bGwsXCJzZXNzaW9uXCI6e1wic2Vzc2lvbklkXCI6XCI2NjA3YWEwMS1jNjBiLTQ0MDgtYjE0MC1lN2UxNjc5NzA1MThcIixcInVzZXJSZWZcIjp7XCJndWlkXCI6XCIzNTQzZGFmZC1lZjYyLTQ2ZTEtYmYyOC0xNjlhY2M3YTc0YmNcIixcInZlcnNpb25cIjpudWxsLFwidGl0bGVcIjpcIkthcmwtSm9oYW4gV2VzdGJlcmdcIn0sXCJ1c2VySWRcIjp7XCJ0eXBlXCI6e1wiY29kZVwiOlwiXCIsXCJzeXN0ZW1cIjpcIlwifSxcInN5c3RlbVwiOlwiXCIsXCJ2YWx1ZVwiOlwiVkdSeDAxNFwifSxcInJvbGVcIjoxLFwibG9naW5NZXRob2RcIjp7XCJjb2RlXCI6XCJUb2tlblwiLFwic3lzdGVtXCI6XCJIT1BFLkxvZ2luTWV0aG9kXCJ9LFwiZXhwaXJlc1wiOlwiMjAyMy0wMS0yNVQwNDo1Nzo0Ni4yNDM5NTI5WlwiLFwiY29tbWlzc2lvblwiOntcImlkXCI6bnVsbCxcImF0dHJpYnV0ZXNcIjpbe1wibmFtZVwiOlwiXCIsXCJ2YWx1ZVwiOlwiXCJ9XX0sXCJvcmdSZWZcIjp7XCJndWlkXCI6XCJjZTM0Yzc0NS1mYTY4LTRmMDQtYjFiZi1kYmU1MWUxOTkzMDhcIixcInZlcnNpb25cIjpudWxsLFwidGl0bGVcIjpcIlPDtmRyYSDDhGx2c2JvcmdzIHNqdWtodXNcIn0sXCJvcmdJZFwiOntcInR5cGVcIjp7XCJjb2RlXCI6XCJcIixcInN5c3RlbVwiOlwiXCJ9LFwic3lzdGVtXCI6XCJcIixcInZhbHVlXCI6XCJWR1IwMDlcIn0sXCJoZWFsdGhDYXJlUHJvdmlkZXJJZFwiOntcInR5cGVcIjp7XCJjb2RlXCI6XCJcIixcInN5c3RlbVwiOlwiXCJ9LFwic3lzdGVtXCI6XCJcIixcInZhbHVlXCI6XCJWR1JcIn0sXCJoZWFsdGhDYXJlVW5pdElkXCI6bnVsbCxcImFjY291bnRcIjpcIlNUQUdJTkdfTEVTU0lTTU9SRVwiLFwidGltZXpvbmVcIjpcIjAwOjAwOjAwXCIsXCJleHRlbnNpb25cIjpbe1wibmFtZVwiOlwiXCIsXCJ2YWx1ZVwiOlwiXCJ9LHtcIm5hbWVcIjpcIkhPUEUuQWxpYXNcIixcInZhbHVlXCI6XCJLV1wifSx7XCJuYW1lXCI6XCJIT1BFLkNoYXRcIixcInZhbHVlXCI6XCJcIn0se1wibmFtZVwiOlwiSE9QRS5Qcm9mZXNzaW9uYWxUaXRsZVwiLFwidmFsdWVcIjpcIlwifV19LFwic2Vzc2lvbktleVwiOlwibHgybjR2RDBlbVRFM2xHMzdvVGFBRUEvYlRrLzkwYnJsSVJzNVdDTk9tZWNuRG02SzdkZ3hvN3EvdE9icUxsTXZUZnlTTHlBQ3Uxdkk4QzgvYVFRbWc9PVwifSIsIm5iZiI6MTU4ODMwOTA2NiwiZXhwIjoxNTg4MzEyNjY2LCJpYXQiOjE1ODgzMDkwNjZ9.2VVaes8xeT0IohsjAEuCfTVOHrtcbiTr4vvJLtjBaYM'
       Accept-Language: 'en'
       accept: application/json
       Content-Type: application/json-patch+json

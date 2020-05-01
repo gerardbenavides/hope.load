@@ -1,5 +1,5 @@
 
-scenarios:
+scenarios: ## GETS ALL PATIENTS FROM A PROVIDER. BY DEFAULT, IT GETS 10 PATIENTS. USE "NETZON" PROVIDER IN STAGING FOR 1500 PATIENTS
   - flow:
     - loop:
       - log: "---------------------------------------------Getting Patient List-----------------------------------------"

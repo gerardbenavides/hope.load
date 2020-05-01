@@ -1,0 +1,13 @@
+
+scenarios: ##GET INSTANCE OF AN EFORM ACTIVITY. FOR {{eformInstanceGUID}}, get it from POST /api/eforminstance/{{patientGUID}}, outcomeReference GUID
+  - flow:
+    - loop:
+      - log: "---------------------------------------------Getting Calendar Data-----------------------------------------------"
+      - get: 
+          url: '/api/eforminstance/{{patientGUID}}/{{eformInstanceGUID}}'
+          expect:
+            - statusCode: 200
+            - contentType: json
+      - log: "-----------------------------------------------Ended a scenario-----------------------------------------------"
+      count: 1
+     
