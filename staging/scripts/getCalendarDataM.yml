@@ -1,5 +1,5 @@
 
-scenarios:
+scenarios: ##GET CALENDAR DATA OF PATIENT IN PATIENT MOBILE (using /api/api/activity/ endpoint)
   - flow:
     - loop:
       - log: "---------------------------------------------Getting Calendar Data-----------------------------------------------"
