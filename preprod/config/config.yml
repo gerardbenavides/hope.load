@@ -13,14 +13,14 @@ config:
     expect: {}
     fuzzer: {}
 
-  target: 'https://staging.static.tempest.hope.addimedical.netzon.se/api' # baseURL of API
+  target: 'https://static.tempest.hope.addimedical.netzon.se/api' # baseURL of API
 
   phases:
-    - duration: 1 #Duration of test will be running
-      arrivalRate: 1000 #Arrival of new virtual user per second (average virtual users)
+    - duration: 1  #Duration of test will be running
+      arrivalRate: 1 #Arrival of new virtual user per second (average virtual users)
       name: "Normal Load" #Name of phase. Can set multiple phases
     
-    - pause: 1 #Pauses for 1 second(s), no virtual users created in this duration
+    ##- pause: 1 #Pauses for 1 second(s), no virtual users created in this duration
 
 
   # SETUP VARIABLES HERE
@@ -28,7 +28,7 @@ config:
 
     ## Add careplan variables
     patientGUID:
-      - "1c8b8308-71b1-4559-8356-32a73d605bee"
+      - "69bfb380-da59-4ae6-b083-0fedbd59c285"
     healthIssue:
       - "I64-"
     careplanName:
@@ -36,26 +36,24 @@ config:
 
     ## Add recurring activities variables
     careplanGUID:
-      - "2a1243d9-4ef5-499f-bc10-cf7634f6ee5e"
+      - "d3c5b0cf-17b1-48fb-a820-58db89c23fd7"
     activityCode:
       - "HT.Weight"
-    # repeatCount: ## Recurring Activity - number of times recurring activity is created
-    #   - "10" 
-    # period: ## Recurring Activity - Interval per day //// This repeatCount = 10 and period = 1 value will create 1 recurring activity each day for 10 days
-    #   - "1"
+    repeatCount: ## Recurring Activity - number of times recurring activity is created
+      - "1" 
+    period: ## Recurring Activity - Interval per day //// This repeatCount = 10 and period = 1 value will create 1 recurring activity each day for 10 days
+      - "1"
     calendarStart:
       - "Wed, 1 Jan 2020 16:00:00 GMT" ## Please follow the format e.g. Sat, 15 Feb 2020 16:00:00 GMT
     calendarEnd:
       - "Thu, 31 Dec 2020 16:00:00 GMT" ## Please follow the format e.g. Sat, 20 Jun 2020 16:00:00 GMT
 
     ## POST Eform Instance
-    activityGUID: "ccc6fced-9011-43fe-81c1-e4189d76497c" 
+    activityGUID: "5b53c13d-8fd7-4e93-8d2c-be445398f0c4" 
 
     ## GET Eform Instance
-    eformInstanceGUID: "1cf84330-8098-4ff8-a1bd-4880efab20a5" 
-    ## 
-    pairingCodeToken:
-    - "eorye6ZHkEIIGDlI8CTVEmZnGOSvTxD97NWYj4snJc3NktLPrCJO3CzCIcLEKWKLvmQiYTQoXMLwZqbc6QDnYg%3D%3D"
+    eformInstanceGUID: "033b6cd2-6173-43a9-80ed-2348ae53da3d" 
+
     max_items: 
       - "10000"
 

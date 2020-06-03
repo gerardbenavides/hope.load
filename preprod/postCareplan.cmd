@@ -1,0 +1,1 @@
+artillery run scripts/postCareplan.yml --config config/config.yml -o output/postCareplan.json && artillery report output/postCareplan.json

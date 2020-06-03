@@ -1,0 +1,14 @@
+
+scenarios:    ## GET token first at /api/authentication/pairingcode/{pairingCode}/verification
+              ## PAIRING CODE ACCESS at /api/authentication/pairingcode/token/verification endpoint
+  - flow: 
+    - loop:
+      - log: "---------------------------------------------Accessing via Pairing Code-----------------------------------------------"
+      - get: 
+          url: '/api/authentication/pairingcode/token/verification?token={{pairingCodeToken}}'
+          expect:
+            - statusCode: 200
+            - contentType: json
+      - log: "-----------------------------------------------Ended a scenario-----------------------------------------------"
+      count: 1
+      

@@ -1,0 +1,1 @@
+artillery run scripts/postPatient.yml -o output/postPatient.json && artillery report output/postPatient.json

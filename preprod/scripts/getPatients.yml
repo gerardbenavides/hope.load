@@ -1,0 +1,14 @@
+
+scenarios: ## GETS ALL PATIENTS FROM A PROVIDER. BY DEFAULT, IT GETS 10 PATIENTS. USE "NETZON" PROVIDER IN STAGING FOR 1500 PATIENTS
+  - flow:
+    - loop:
+      - log: "---------------------------------------------Getting Patient List-----------------------------------------"
+      - get: 
+          url: '/api/patient/datacolumns?sortBy=name.given&sortOrder=0&filterBy=&pageSize=5000&pageNumber=1&totalItems=null&status=0&t=1588247769178'
+          expect:
+            - statusCode: 200
+            - contentType: json
+      - log: "-----------------------------------------------Ended a scenario-----------------------------------------------"
+      count: 1
+      
+

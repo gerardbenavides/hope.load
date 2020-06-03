@@ -1,0 +1,1 @@
+artillery run scripts/accessViaPairingCode.yml --config config/config.yml -o output/accessViaPairingCode.json && artillery report output/accessViaPairingCode.json 

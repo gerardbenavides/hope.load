@@ -1,0 +1,19 @@
+scenarios: ## CREATES A PARTICULAR SINGLE ACTIVITY ON A CERTAIN DATE
+  - flow:
+    - loop:
+      - log: "--------------------------------Creating Activity under a Careplan-----------------------------------------"
+      - post:
+          url: '/api/activity/{{patientGUID}}/{{careplanGUID}}'
+          headers: 
+            content-type: "application/json"
+
+          # REQUEST BODY
+          body: '{"code":"HT.Spiro","eFormCode":null,"eFormSystem":null,"title":"Spirometer, hemtest","type":"Single","startTime":"2020-05-04T04:00:42.693Z","startBeforeMinutes":null,"startAfterMinutes":null,"description":"","repeat":null,"notifications":[],"instantiates":null}'
+          
+          # ASSERTIONS
+          expect:
+            - statusCode: 201
+            - contentType: json
+      - log: "-----------------------------------------Ended a scenario-----------------------------------------------"
+      count: 1  ## change the number on how times this script should run, default is 1
+

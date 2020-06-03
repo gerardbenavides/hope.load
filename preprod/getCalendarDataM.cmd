@@ -1,0 +1,1 @@
+artillery run scripts/getCalendarDataM.yml --config config/config.yml -o output/getCalendarDataM.json && artillery report output/getCalendarDataM.json 

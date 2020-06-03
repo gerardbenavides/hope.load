@@ -1,0 +1,13 @@
+
+scenarios: ##GET CALENDAR DATA OF PATIENT IN PATIENT MOBILE (using /api/api/activity/ endpoint. Needs to update to v3 in future)
+  - flow: ##BY DEFAULT, IT GETS ALL ACTIVITIES FOR THE WHOLE YEAR OF 2020. TO CHANGE, GO TO CONFIG.YML FILE AND UPDATE "calendarStart" and "calendarEnd"
+    - loop:
+      - log: "---------------------------------------------Getting Calendar Data-----------------------------------------------"
+      - get: 
+          url: '/api/activity/{{patientGUID}}?sortBy=Start.Value&all=true&status=&startDateTime={{calendarStart}}&endDateTime={{calendarEnd}}&pageSize={{max_size}}&pageNumber=1&types=&zoom=true&openEnd=false'
+          expect:
+            - statusCode: 200
+            - contentType: json
+      - log: "-----------------------------------------------Ended a scenario-----------------------------------------------"
+      count: 1
+      
