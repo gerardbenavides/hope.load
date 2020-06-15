@@ -1,0 +1,1 @@
+artillery run scripts/getActivityList.yml --config config/config.yml -o output/getActivityList.json && artillery report output/getActivityList.json

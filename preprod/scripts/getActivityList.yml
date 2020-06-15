@@ -1,0 +1,14 @@
+
+scenarios: # GETS ALL PATIENT'S CURRENT DAY AND PREVIOUS ACTIVITIES (42 DAYS PAST) 
+  - flow:
+    - loop:
+      - log: "---------------------------------------------Getting Patient's Activity List-----------------------------------------"
+      - get: 
+          url: '/api/activity/{{patientGUID}}?all=true&types=0&types=1&pageSize=2147483647&startDateTime={{startDateTime}}&endDateTime={{endDateTime}}&openEnd=true&status=1&status=3&t=1592215162457'
+          expect:
+            - statusCode: 200
+            - contentType: json
+      - log: "-----------------------------------------------Ended a scenario-----------------------------------------------"
+      count: 1
+      
+
