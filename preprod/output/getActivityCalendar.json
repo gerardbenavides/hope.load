@@ -1,26 +1,26 @@
 {
   "aggregate": {
-    "timestamp": "2020-06-15T10:20:36.075Z",
+    "timestamp": "2020-06-15T10:55:08.296Z",
     "scenariosCreated": 1,
     "scenariosCompleted": 1,
     "requestsCompleted": 1,
     "latency": {
-      "min": 1018.6,
-      "max": 1018.6,
-      "median": 1018.6,
-      "p95": 1018.6,
-      "p99": 1018.6
+      "min": 1034.1,
+      "max": 1034.1,
+      "median": 1034.1,
+      "p95": 1034.1,
+      "p99": 1034.1
     },
     "rps": {
       "count": 1,
       "mean": 0.68
     },
     "scenarioDuration": {
-      "min": 1063.4,
-      "max": 1063.4,
-      "median": 1063.4,
-      "p95": 1063.4,
-      "p99": 1063.4
+      "min": 1076,
+      "max": 1076,
+      "median": 1076,
+      "p95": 1076,
+      "p99": 1076
     },
     "scenarioCounts": {
       "0": 1
@@ -43,27 +43,27 @@
   },
   "intermediate": [
     {
-      "timestamp": "2020-06-15T10:20:36.070Z",
+      "timestamp": "2020-06-15T10:55:08.291Z",
       "scenariosCreated": 1,
       "scenariosCompleted": 1,
       "requestsCompleted": 1,
       "latency": {
-        "min": 1018.6,
-        "max": 1018.6,
-        "median": 1018.6,
-        "p95": 1018.6,
-        "p99": 1018.6
+        "min": 1034.1,
+        "max": 1034.1,
+        "median": 1034.1,
+        "p95": 1034.1,
+        "p99": 1034.1
       },
       "rps": {
         "count": 1,
         "mean": 0.68
       },
       "scenarioDuration": {
-        "min": 1063.4,
-        "max": 1063.4,
-        "median": 1063.4,
-        "p95": 1063.4,
-        "p99": 1063.4
+        "min": 1076,
+        "max": 1076,
+        "median": 1076,
+        "p95": 1076,
+        "p99": 1076
       },
       "scenarioCounts": {
         "0": 1
@@ -74,7 +74,7 @@
       },
       "matches": 0,
       "latencies": [
-        1018621400
+        1034129100
       ],
       "customStats": {},
       "counters": {},
